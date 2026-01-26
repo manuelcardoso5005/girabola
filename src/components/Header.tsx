@@ -14,6 +14,7 @@ export default function Header() {
     { href: "/", label: "Vista geral" },
     { href: "/jogos", label: "Jogos" },
     { href: "/classificacao", label: "Classificação" },
+    { href: "/sobre", label: "Sobre" },
   ];
 
   return (
