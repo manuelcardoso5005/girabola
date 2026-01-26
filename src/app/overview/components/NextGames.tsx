@@ -1,3 +1,5 @@
+import CardOverview from "./CardOverview";
+
 interface Jogo {
   casa: string;
   fora: string;
@@ -12,11 +14,8 @@ interface NextGamesProps {
 
 export default function NextGames({ jogos }: NextGamesProps) {
   return (
-    <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-      <div className="bg-linear-to-r from-emerald-600 to-emerald-700 px-6 py-4">
-        <h2 className="text-xl font-bold text-white">Próximos Jogos</h2>
-      </div>
-      <div className="p-6 space-y-3">
+    <CardOverview color="from-emerald-600 to-emerald-700" title="Próximos Jogos" subtitle="Ver Calendário" linkPage="/jogos">
+
         {jogos.length > 0 ? (
           jogos.map((j, i) => (
             <div key={i} className="flex items-center justify-between p-4 bg-slate-50 rounded-xl hover:bg-slate-100 transition-colors">
@@ -36,7 +35,8 @@ export default function NextGames({ jogos }: NextGamesProps) {
         ) : (
           <div className="text-center text-slate-500 py-4">Nenhum jogo marcado</div>
         )}
-      </div>
-    </div>
+
+    </CardOverview>
+
   );
 }

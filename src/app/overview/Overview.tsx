@@ -50,7 +50,7 @@ export default function Overview() {
             <Artilharia artilharia={artilharia} />
           </div>
         </div>
-        </LayoutPage>
+    </LayoutPage>
 
   );
 }

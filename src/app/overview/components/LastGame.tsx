@@ -14,7 +14,7 @@ interface LastGameProps {
 
 export default function LastGame({ jogo }: LastGameProps) {
   return (
-      <CardOverview color="from-blue-600 to-blue-700" title="Último Jogo" subtitle="Ver Calendário" linkPage="/jogos">
+    <CardOverview color="from-blue-600 to-blue-700" title="Último Jogo" subtitle="Ver Calendário" linkPage="/jogos">
       {jogo ? (
         <div className="p-6">
           <div className="flex items-center justify-between">

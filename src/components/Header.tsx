@@ -14,6 +14,7 @@ export default function Header() {
   const links = [
     { href: "/", label: "Vista geral" },
     { href: "/jogos", label: "Jogos" },
+    { href: "/calendario", label: "Calendário" },
     { href: "/classificacao", label: "Classificação" },
     { href: "/sobre", label: "Sobre" },
   ];
