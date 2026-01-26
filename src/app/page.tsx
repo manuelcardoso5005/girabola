@@ -26,19 +26,24 @@ export default function Overview() {
   );
 
   // transforma todas as rodadas em uma lista única de jogos
-  const jogos: Jogo[] = objecto.calendar.flatMap((rodada) =>
-    rodada.jogos.map((j) => ({
-      casa: typeof j.casa === "number" ? clubeMap[j.casa].nome : j.casa,
-      fora: typeof j.fora === "number" ? clubeMap[j.fora].nome : j.fora,
-      resultado: j.resultado || "-",
-      logoCasa: typeof j.casa === "number" ? clubeMap[j.casa].logo : undefined,
-      logoFora: typeof j.fora === "number" ? clubeMap[j.fora].logo : undefined,
-    }))
-  );
+const jogos: Jogo[] = objecto.calendar.flatMap((rodada) =>
+  rodada.jogos.map((j) => ({
+    casa: typeof j.casa === "number" ? clubeMap[j.casa].nome : j.casa,
+    fora: typeof j.fora === "number" ? clubeMap[j.fora].nome : j.fora,
+    resultado: j.resultado,
+    logoCasa: typeof j.casa === "number" ? clubeMap[j.casa].logo : undefined,
+    logoFora: typeof j.fora === "number" ? clubeMap[j.fora].logo : undefined,
+  }))
+);
 
   // separa último jogo jogado do restante
-  const ultimo: Jogo | undefined = [...jogos].reverse().find((j) => j.resultado !== "-");
-  const proximos = jogos.filter((j) => j.resultado === "-" || j === ultimo);
+const jogosOrdenados = [...jogos];
+const ultimo = [...jogosOrdenados]
+  .reverse()
+  .find(j => j.resultado && j.resultado !== "-");
+  const proximos = jogosOrdenados
+  .filter(j => !j.resultado || j.resultado === "-")
+  .slice(0, 3);
 
   // tabela baseada em standings
   const tabela: Time[] = objecto.standings.map((s) => {
@@ -61,6 +66,10 @@ export default function Overview() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-6">
       <div className="max-w-7xl mx-auto">
+        <div className="mb-8">
+          <h1 className="text-4xl font-bold text-slate-800 mb-2">Vista Geral</h1>
+          <p className="text-slate-600">Resumo dos jogos e classificação</p>
+        </div>
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Coluna esquerda - Jogos */}
           <div className="lg:col-span-2 space-y-6">

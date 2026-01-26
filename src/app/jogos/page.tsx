@@ -1,6 +1,10 @@
+"use client";
+
 import { objecto } from "@/src/data/data";
+import { useState } from "react";
 
 export default function Jogos() {
+  
   // cria map de id -> nome e logo do clube
   const clubeMap = Object.fromEntries(
     objecto.clubs.map((c) => [c.id, { nome: c.nome, logo: c.logo }])
@@ -8,8 +12,9 @@ export default function Jogos() {
 
   // transforma todas as rodadas em uma lista única de jogos
   const jogos = objecto.calendar.flatMap((rodada) =>
-    rodada.jogos.map((jogo) => ({
-      ...jogo,
+  rodada.jogos.map((jogo) => ({
+    ...jogo,
+    jornada: rodada.jornada,
       casaNome: typeof jogo.casa === "number" ? clubeMap[jogo.casa].nome : jogo.casa,
       foraNome: typeof jogo.fora === "number" ? clubeMap[jogo.fora].nome : jogo.fora,
       casaLogo: typeof jogo.casa === "number" ? clubeMap[jogo.casa].logo : undefined,
@@ -18,12 +23,26 @@ export default function Jogos() {
   );
 
   // separa jogos realizados dos futuros
-  const jogosRealizados = jogos.filter((j) => j.resultado);
+const jornadasJogadas = [
+  ...new Set(
+    jogos
+      .filter(j => j.resultado)
+      .map(j => j.jornada)
+  )
+].sort((a, b) => b - a);
+
+const ultimaJornada = jornadasJogadas[0];
+const [jornadaSelecionada, setJornadaSelecionada] = useState(ultimaJornada);
+const jogosRealizados = jogos.filter(
+  j => j.resultado && j.jornada === jornadaSelecionada
+);
+
+
   const jogosFuturos = jogos.filter((j) => !j.resultado);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-6">
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-7xl mx-auto">
         <div className="mb-8">
           <h1 className="text-4xl font-bold text-slate-800 mb-2">Jogos</h1>
           <p className="text-slate-600">Calendário completo do Girabola</p>
@@ -97,6 +116,24 @@ export default function Jogos() {
         )}
 
         {/* Jogos Realizados */}
+<div className="mb-6 inline-flex items-center gap-3 bg-white px-6 py-3 rounded-xl shadow-md border border-slate-200">
+  <label className="font-semibold text-slate-700 text-sm">
+    Jornada:
+  </label>
+
+  <select
+    value={jornadaSelecionada}
+    onChange={(e) => setJornadaSelecionada(Number(e.target.value))}
+    className="px-4 py-2 rounded-lg border-2 border-slate-300 bg-gradient-to-br from-white to-slate-50 font-medium text-slate-800 cursor-pointer hover:border-blue-500 focus:border-blue-600 focus:ring-2 focus:ring-blue-200 transition-all outline-none"
+  >
+    {jornadasJogadas.map((j) => (
+      <option key={j} value={j}>
+        Jornada {j}
+      </option>
+    ))}
+  </select>
+</div>
+
         {jogosRealizados.length > 0 && (
           <div>
             <div className="bg-white rounded-2xl shadow-lg overflow-hidden">

@@ -1,10 +1,42 @@
 import { objecto } from "@/src/data/data";
+import { CheckCircle, XCircle, MinusCircle } from "lucide-react";
 
 export default function Classificacao() {
   // cria um map de id -> nome do clube para facilitar
   const clubeMap = Object.fromEntries(
     objecto.clubs.map((c) => [c.id, c.nome])
   );
+
+  function getUltimosResultados(clubId: number) {
+  const jogos = objecto.calendar
+    .flatMap(r => r.jogos)
+    .filter(j => j.resultado)
+    .filter(j => j.casa === clubId || j.fora === clubId)
+    .sort((a, b) => b.id - a.id) // mais recente primeiro
+    .slice(0, 5);
+
+  return jogos.map(jogo => {
+    const [gCasa, gFora] = jogo.resultado!.split(" - ").map(Number);
+
+    if (jogo.casa === clubId) {
+      if (gCasa > gFora) return "W";
+      if (gCasa < gFora) return "L";
+      return "D";
+    } else {
+      if (gFora > gCasa) return "W";
+      if (gFora < gCasa) return "L";
+      return "D";
+    }
+  });
+}
+
+function getClubLogoAndName(clubId: number) {
+  const club = objecto.clubs.find(c => c.id === clubId);
+  if (!club) return { logo: "", nome: "Desconhecido" };
+  return { logo: club.logo, nome: club.nome };
+}
+
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50 p-6">
@@ -20,7 +52,7 @@ export default function Classificacao() {
               <thead>
                 <tr className="bg-gradient-to-r from-slate-700 to-slate-800 text-white">
                   <th className="p-4 text-left font-semibold">#</th>
-                  <th className="p-4 text-left font-semibold">Time</th>
+                  <th className="p-4 text-left font-semibold">Equipa</th>
                   <th className="p-4 text-center font-semibold">J</th>
                   <th className="p-4 text-center font-semibold">V</th>
                   <th className="p-4 text-center font-semibold">E</th>
@@ -29,6 +61,7 @@ export default function Classificacao() {
                   <th className="p-4 text-center font-semibold">GS</th>
                   <th className="p-4 text-center font-semibold">SG</th>
                   <th className="p-4 text-center font-semibold">Pts</th>
+                  <th className="p-4 text-center font-semibold">Últimos 5</th>
                 </tr>
               </thead>
               <tbody>
@@ -58,9 +91,19 @@ export default function Classificacao() {
                           {time.position}
                         </div>
                       </td>
-                      <td className="p-4">
-                        <span className="font-semibold text-slate-800">{clubeMap[time.club]}</span>
-                      </td>
+                      <td className="p-4 flex items-center gap-2">
+  {(() => {
+    const { logo, nome } = getClubLogoAndName(time.club as number);
+    return (
+      <>
+        <img src={logo} alt={nome} className="w-6 h-6 object-contain rounded-full" />
+        <span className="font-semibold text-slate-800">{nome}</span>
+      </>
+    );
+  })()}
+</td>
+
+
                       <td className="p-4 text-center text-slate-600">{time.wins + time.draws + time.losses}</td>
                       <td className="p-4 text-center">
                         <span className="inline-block bg-green-100 text-green-700 px-2 py-1 rounded font-semibold text-sm">
@@ -100,6 +143,45 @@ export default function Classificacao() {
                           {time.points}
                         </span>
                       </td>
+                      <td className="p-4">
+<div className="flex gap-1.5 justify-center">
+  {getUltimosResultados(Number(time.club))
+    .slice() // cria uma cópia pra não mexer no original
+    .reverse() // inverte a ordem
+    .map((r, i) => {
+      const isLatest = i === 4;
+
+      const config = {
+        W: { bg: "bg-green-500", text: "V", label: "Vitória" },
+        D: { bg: "bg-yellow-500", text: "E", label: "Empate" },
+        L: { bg: "bg-red-500", text: "D", label: "Derrota" }
+      };
+
+      const current = config[r] || config.L;
+
+      return (
+        <div
+          key={i}
+          className={`
+            w-7 h-7 rounded-full flex items-center justify-center
+            font-bold text-xs text-white shadow-sm
+            transition-all duration-200
+            ${current.bg}
+            ${isLatest 
+              ? "ring-2 ring-blue-400 ring-offset-2 scale-110" 
+              : "opacity-80 hover:opacity-100"
+            }
+          `}
+          title={current.label}
+        >
+          {current.text}
+        </div>
+      );
+    })}
+</div>
+
+</td>
+
                     </tr>
                   );
                 })}
