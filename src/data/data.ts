@@ -20,6 +20,17 @@ export interface ClubStats {
   points: number;
 }
 
+export interface Competicao {
+  id?: number;
+  nome: string;
+  pais: string;
+  nivel: number;
+  organizador: string;
+  logotipo: string;
+  temporadaAtual?: string;
+}
+
+
 export interface InternationalCompetition {
   name: string;
   slots: number;
@@ -34,6 +45,7 @@ export interface Jogo {
   data?: string;
   logoCasa?: string;
   logoFora?: string;
+  hora?: string;
 }
 
 export interface Rodada {
@@ -72,7 +84,7 @@ export interface PastSeason {
   standings: Standing[];
 }
 
-export interface Temporada {
+export interface data {
   id: number;
   epoca: string;
   inicio: string;
@@ -80,6 +92,7 @@ export interface Temporada {
   totalClubes: number;
   totalJornadas: number;
   jornadaAtual: number;
+  competicao: Competicao[];
   clubs: Club[];
   clubStats: ClubStats[];
   calendar: Rodada[];
@@ -92,7 +105,7 @@ export interface Temporada {
 
 // -------------------- exemplo funcional --------------------
 
-export const temporada: Temporada = {
+export const objecto: data = {
   id: 1,
   epoca: "2025/2026",
   inicio: "2026-01-25",
@@ -100,12 +113,21 @@ export const temporada: Temporada = {
   totalClubes: 4,
   totalJornadas: 6,
   jornadaAtual: 5,
+ competicao: [
+  {
+    nome: "Girabola",
+    pais: "Angola",
+    nivel: 1,
+    organizador: "Federação Angolana de Futebol",
+    logotipo: "https://i.ibb.co/S49kJ7Wb/girabola-logo.png",
+  }
+],
 
   clubs: [
-    { id: 1, nome: "Wiliete", shortName: "WIL", logo: "/logos/wiliete.png", stadium: "Estádio Wiliete", city: "Benguela", colors: ["#FF0000", "#FFFFFF"] },
-    { id: 2, nome: "Kabuscorp", shortName: "KAB", logo: "/logos/kabuscorp.png", stadium: "Estádio 1º de Maio", city: "Benguela", colors: ["#0000FF", "#FFFF00"] },
-    { id: 3, nome: "Progresso", shortName: "PRO", logo: "/logos/progresso.png", stadium: "Estádio Progresso", city: "Luanda", colors: ["#00FF00", "#000000"] },
-    { id: 4, nome: "Petro", shortName: "PET", logo: "/logos/petro.png", stadium: "Estádio da Cidadela", city: "Luanda", colors: ["#FFA500", "#0000FF"] },
+    { id: 1, nome: "Wiliete", shortName: "WIL", logo: "https://i.ibb.co/dsfttTn6/club-wiliete.png", stadium: "Estádio Wiliete", city: "Benguela", colors: ["#FF0000", "#FFFFFF"] },
+    { id: 2, nome: "Kabuscorp", shortName: "KAB", logo: "https://i.ibb.co/zcmy14V/club-kabuscorp.png", stadium: "Estádio 1º de Maio", city: "Benguela", colors: ["#0000FF", "#FFFF00"] },
+    { id: 3, nome: "Primeiro de Agosto", shortName: "PRI", logo: "https://i.ibb.co/JFSZMvHH/club-primeirodeagosto.png", stadium: "França Ndalu", city: "Luanda", colors: ["#00FF00", "#000000"] },
+    { id: 4, nome: "Petro de Luanda", shortName: "APL", logo: "https://i.ibb.co/j9tFbP6X/club-petro.jpg", stadium: "Estádio da Cidadela", city: "Luanda", colors: ["#FFA500", "#0000FF"] },
   ],
 
   clubStats: [
@@ -120,44 +142,44 @@ calendar: [
   {
     jornada: 1,
     jogos: [
-      { id: 1, casa: 1, fora: 2, resultado: "0 - 2", data: "2026-01-25" }, // Wiliete 0 x 2 Kabuscorp
-      { id: 2, casa: 3, fora: 4, resultado: "1 - 1", data: "2026-01-26" }, // Progresso 1 x 1 Petro
+      { id: 1, casa: 1, fora: 2, resultado: "0 - 2", data: "2026-01-25",hora: "16:00" }, // Wiliete 0 x 2 Kabuscorp
+      { id: 2, casa: 3, fora: 4, resultado: "1 - 1", data: "2026-01-26",hora: "18:00" }, // Progresso 1 x 1 Petro
     ]
   },
   {
     jornada: 2,
     jogos: [
-      { id: 3, casa: 1, fora: 3, resultado: "2 - 0", data: "2026-02-01" }, // Wiliete 2 x 0 Progresso
-      { id: 4, casa: 2, fora: 4, resultado: "1 - 1", data: "2026-02-02" }, // Kabuscorp 1 x 1 Petro
+      { id: 3, casa: 1, fora: 3, resultado: "2 - 0", data: "2026-02-01",hora: "16:00" }, // Wiliete 2 x 0 Progresso
+      { id: 4, casa: 2, fora: 4, resultado: "1 - 1", data: "2026-02-02",hora: "18:00" }, // Kabuscorp 1 x 1 Petro
     ]
   },
   {
     jornada: 3,
     jogos: [
-      { id: 5, casa: 1, fora: 4, resultado: "1 - 3", data: "2026-02-08" }, // Wiliete 1 x 3 Petro
-      { id: 6, casa: 2, fora: 3, resultado: "2 - 2", data: "2026-02-09" }, // Kabuscorp 2 x 2 Progresso
+      { id: 5, casa: 1, fora: 4, resultado: "1 - 3", data: "2026-02-08" ,hora: "16:00"}, // Wiliete 1 x 3 Petro
+      { id: 6, casa: 2, fora: 3, resultado: "2 - 2", data: "2026-02-09",hora: "18:00" }, // Kabuscorp 2 x 2 Progresso
     ]
   },
   // Segunda volta (mandos invertidos)
   {
     jornada: 4,
     jogos: [
-      { id: 7, casa: 2, fora: 1, resultado: "2 - 1", data: "2026-03-01" }, // Kabuscorp 2 x 1 Wiliete
-      { id: 8, casa: 4, fora: 3, resultado: "1 - 2", data: "2026-03-02" }, // Petro 1 x 2 Progresso
+      { id: 7, casa: 2, fora: 1, resultado: "2 - 1", data: "2026-03-01",hora: "16:00" }, // Kabuscorp 2 x 1 Wiliete
+      { id: 8, casa: 4, fora: 3, resultado: "1 - 2", data: "2026-03-02",hora: "18:00" }, // Petro 1 x 2 Progresso
     ]
   },
   {
     jornada: 5,
     jogos: [
-      { id: 9, casa: 3, fora: 1, resultado: "0 - 0", data: "2026-03-08" }, // Progresso 0 x 0 Wiliete
-      { id: 10, casa: 4, fora: 2, resultado: "1 - 1", data: "2026-03-09" }, // Petro 1 x 1 Kabuscorp
+      { id: 9, casa: 3, fora: 1, resultado: "0 - 0", data: "2026-03-08",hora: "16:00" }, // Progresso 0 x 0 Wiliete
+      { id: 10, casa: 4, fora: 2, resultado: "1 - 1", data: "2026-03-09",hora: "18:00" }, // Petro 1 x 1 Kabuscorp
     ]
   },
   {
     jornada: 6,
     jogos: [
-      { id: 11, casa: 4, fora: 1 }, // Petro vs Wiliete (não jogado)
-      { id: 12, casa: 3, fora: 2 }, // Progresso vs Kabuscorp (não jogado)
+      { id: 11, casa: 4, fora: 1, hora: "16:00" }, // Petro vs Wiliete (não jogado)
+      { id: 12, casa: 3, fora: 2, hora: "18:00" }, // Progresso vs Kabuscorp (não jogado)
     ]
   }
 ],
@@ -217,3 +239,8 @@ calendar: [
 
   pastSeasons: [], // preencher depois
 };
+
+
+
+
+
