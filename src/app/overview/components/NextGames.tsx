@@ -6,11 +6,11 @@ interface Jogo {
   logoFora?: string;
 }
 
-interface ProximosJogosProps {
+interface NextGamesProps {
   jogos: Jogo[];
 }
 
-export default function ProximosJogos({ jogos }: ProximosJogosProps) {
+export default function NextGames({ jogos }: NextGamesProps) {
   return (
     <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
       <div className="bg-linear-to-r from-emerald-600 to-emerald-700 px-6 py-4">

@@ -1,18 +1,31 @@
+import Link from "next/link";
+import { ChevronRight } from "lucide-react";
+
 interface Time {
   posicao: number;
   nome: string;
   pontos: number;
 }
 
-interface TabelaClassificacaoProps {
+interface TableClassificationProps {
   tabela: Time[];
 }
 
-export default function TabelaClassificacao({ tabela }: TabelaClassificacaoProps) {
+export default function TableClassification({ tabela }: TableClassificationProps) {
   return (
     <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-      <div className="bg-linear-to-r from-purple-600 to-purple-700 px-6 py-4">
+      <div className="bg-linear-to-r from-purple-600 to-purple-700 px-6 py-4 flex items-center justify-between">
         <h2 className="text-xl font-bold text-white">Classificação</h2>
+        <Link
+          href="/classificacao"
+          className="text-white flex items-center gap-1 group"
+        >
+          <span className="sr-only">Ver Classificação</span> {/* acessibilidade */}
+          <ChevronRight
+            className="w-5 h-5 text-white transition-transform duration-200 group-hover:translate-x-1 group-hover:text-gray-200"
+          />
+        </Link>
+
       </div>
       <div className="p-6 space-y-2">
         {tabela.map((time, idx) => (

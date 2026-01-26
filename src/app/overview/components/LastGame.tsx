@@ -1,3 +1,5 @@
+import CardOverview from "./CardOverview";
+
 interface Jogo {
   casa: string;
   fora: string;
@@ -6,16 +8,13 @@ interface Jogo {
   logoFora?: string;
 }
 
-interface UltimoJogoProps {
+interface LastGameProps {
   jogo?: Jogo;
 }
 
-export default function LastGame({ jogo }: UltimoJogoProps) {
+export default function LastGame({ jogo }: LastGameProps) {
   return (
-    <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
-      <div className="bg-linear-to-r from-blue-600 to-blue-700 px-6 py-4">
-        <h2 className="text-xl font-bold text-white">Último Jogo</h2>
-      </div>
+      <CardOverview color="from-blue-600 to-blue-700" title="Último Jogo" subtitle="Ver Calendário" linkPage="/jogos">
       {jogo ? (
         <div className="p-6">
           <div className="flex items-center justify-between">
@@ -45,6 +44,7 @@ export default function LastGame({ jogo }: UltimoJogoProps) {
           Nenhum jogo realizado ainda
         </div>
       )}
-    </div>
+      </CardOverview>
+
   );
 }

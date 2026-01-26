@@ -1,8 +1,8 @@
 import { objecto } from "@/src/data/data";
 import UltimoJogo from "./components/LastGame";
-import ProximosJogos from "./components/ProximosJogos";
-import TabelaClassificacao from "./components/TabelaClassificacao";
-import Artilharia from "./components/Artilharia";
+import ProximosJogos from "./components/NextGames";
+import TabelaClassificacao from "./components/TableClassification";
+import Artilharia from "./components/TopScore";
 import LayoutPage from "@/src/components/LayoutPage";
 
 export default function Overview() {

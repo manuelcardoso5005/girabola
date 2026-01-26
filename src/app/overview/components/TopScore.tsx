@@ -3,11 +3,11 @@ interface Artilheiro {
   gols: number;
 }
 
-interface ArtilhariaProps {
+interface TopScoreProps {
   artilharia: Artilheiro[];
 }
 
-export default function Artilharia({ artilharia }: ArtilhariaProps) {
+export default function TopScore({ artilharia }: TopScoreProps) {
   return (
     <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
       <div className="bg-linear-to-r from-amber-600 to-amber-700 px-6 py-4">
