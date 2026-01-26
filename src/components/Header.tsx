@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { objecto } from "@/src/data/data";
+import { motion, AnimatePresence } from "framer-motion";
 
 export default function Header() {
   const pathname = usePathname();
@@ -18,30 +19,36 @@ export default function Header() {
   ];
 
   return (
-    <header className="bg-gradient-to-r from-slate-800 via-slate-900 to-slate-800 border-b border-slate-700 shadow-lg">
+    <header className="fixed top-0 left-0 w-full z-50 bg-linear-to-r from-slate-800 via-slate-900 to-slate-800 border-b border-slate-700 shadow-lg">
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-center justify-between h-16">
 
-          {/* Logo + Nome */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-10 h-10 rounded-lg overflow-hidden shadow-md">
-              <img
-                src={liga.logotipo}
-                alt={liga.nome}
-                className="w-full h-full object-contain"
-              />
-            </div>
+          {/* Logo + Nome com animação */}
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+          >
+            <Link href="/" className="flex items-center gap-3 group">
+              <div className="w-10 h-10 rounded-lg overflow-hidden shadow-md">
+                <img
+                  src={liga.logotipo}
+                  alt={liga.nome}
+                  className="w-full h-full object-contain"
+                />
+              </div>
 
-            <div>
-              <h1 className="text-white font-bold text-xl tracking-tight">
-                {liga.nome}
-              </h1>
-              <p className="text-slate-400 text-xs">{epoca}</p>
-            </div>
-          </Link>
+              <div>
+                <h1 className="text-white font-bold text-xl tracking-tight">
+                  {liga.nome}
+                </h1>
+                <p className="text-slate-400 text-xs">{epoca}</p>
+              </div>
+            </Link>
+          </motion.div>
 
           {/* Navegação */}
-          <nav className="flex items-center gap-2 h-full">
+          <nav className="flex items-center gap-2 h-full relative">
             {links.map((link) => {
               const isActive = pathname === link.href;
 
@@ -61,9 +68,19 @@ export default function Header() {
                 >
                   {link.label}
 
-                  {isActive && (
-                    <span className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 to-blue-600 rounded-t-full" />
-                  )}
+                  {/* Linha ativa animada */}
+                  <AnimatePresence>
+                    {isActive && (
+                      <motion.span
+                        layoutId="underline"
+                        className="absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r from-emerald-500 to-blue-600 rounded-t-full"
+                        initial={{ width: 0 }}
+                        animate={{ width: "100%" }}
+                        exit={{ width: 0 }}
+                        transition={{ duration: 0.3 }}
+                      />
+                    )}
+                  </AnimatePresence>
                 </Link>
               );
             })}
