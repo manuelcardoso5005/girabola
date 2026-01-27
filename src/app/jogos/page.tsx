@@ -4,11 +4,15 @@ import { objecto } from "@/src/data/data";
 import LayoutPage from "@/src/components/LayoutPage";
 
 export default function Jogos() {
-  const clubeMap = Object.fromEntries(
-    objecto.clubs.map((c) => [c.id, { nome: c.nome, logo: c.logo }])
+    const clubeMap = Object.fromEntries(
+    objecto.clubs.map((c) => [
+      c.id,
+      { nome: c.nome, logo: c.logo, stadium: c.stadium }
+    ])
   );
 
-  const jogos = objecto.calendar.flatMap((rodada) =>
+
+    const jogos = objecto.calendar.flatMap((rodada) =>
     rodada.jogos.map((jogo) => ({
       ...jogo,
       jornada: rodada.jornada,
@@ -16,8 +20,13 @@ export default function Jogos() {
       foraNome: typeof jogo.fora === "number" ? clubeMap[jogo.fora].nome : jogo.fora,
       casaLogo: typeof jogo.casa === "number" ? clubeMap[jogo.casa].logo : undefined,
       foraLogo: typeof jogo.fora === "number" ? clubeMap[jogo.fora].logo : undefined,
+      estadio:
+        typeof jogo.casa === "number"
+          ? clubeMap[jogo.casa].stadium
+          : "Estádio a definir",
     }))
   );
+
 
   const jogosFuturos = jogos.filter((j) => !j.resultado);
 
@@ -44,10 +53,22 @@ export default function Jogos() {
                 {/* Data e hora */}
                 <div className="px-8 text-center">
                   <div className="bg-emerald-100 px-6 py-3 rounded-xl">
-                    <p className="text-sm font-medium text-emerald-700">{jogo.data || "A definir"}</p>
-                    {jogo.hora && <p className="text-lg font-bold text-emerald-800 mt-1">{jogo.hora}</p>}
+                    <p className="text-sm font-medium text-emerald-700">
+                      {jogo.data || "A definir"}
+                    </p>
+
+                    {jogo.hora && (
+                      <p className="text-lg font-bold text-emerald-800 mt-1">
+                        {jogo.hora}
+                      </p>
+                    )}
+
+                    <p className="text-xs text-slate-500 mt-1">
+                      📍 {jogo.estadio}
+                    </p>
                   </div>
                 </div>
+
 
                 {/* Fora */}
                 <div className="flex items-center gap-4 flex-1 justify-end">

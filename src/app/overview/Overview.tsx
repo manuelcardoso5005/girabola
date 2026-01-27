@@ -4,13 +4,15 @@ import ProximosJogos from "./components/NextGames";
 import TabelaClassificacao from "./components/TableClassification";
 import Artilharia from "./components/TopScore";
 import LayoutPage from "@/src/components/LayoutPage";
+import { useMemo } from "react";
 
 export default function Overview() {
   const clubeMap = Object.fromEntries(
     objecto.clubs.map((c) => [c.id, { nome: c.nome, logo: c.logo }])
   );
 
-  const jogos = objecto.calendar.flatMap((rodada) =>
+  const jogos = useMemo(() => {
+  return objecto.calendar.flatMap((rodada) =>
     rodada.jogos.map((j) => ({
       casa: typeof j.casa === "number" ? clubeMap[j.casa].nome : j.casa,
       fora: typeof j.fora === "number" ? clubeMap[j.fora].nome : j.fora,
@@ -19,8 +21,13 @@ export default function Overview() {
       logoFora: typeof j.fora === "number" ? clubeMap[j.fora].logo : undefined,
     }))
   );
+}, []);
 
-  const ultimo = [...jogos].reverse().find(j => j.resultado && j.resultado !== "-");
+
+  const ultimo = [...jogos]
+  .reverse()
+  .find(j => j.resultado && j.resultado !== "-") ?? null;
+
   const proximos = jogos.filter(j => !j.resultado || j.resultado === "-").slice(0, 3);
 
   const tabela = objecto.standings.map(s => {
@@ -41,7 +48,7 @@ export default function Overview() {
     <LayoutPage title="Vista Geral" subtitle="Resumo dos jogos e classificação">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           <div className="lg:col-span-2 space-y-6">
-            <UltimoJogo jogo={ultimo} />
+            {ultimo && <UltimoJogo jogo={ultimo} />}
             <ProximosJogos jogos={proximos} />
           </div>
 

@@ -69,7 +69,7 @@ export default function Calendar() {
                   </div>
 
                   {/* Resultado ou Data/Hora */}
-                  <div className="px-8 text-center">
+                  {<div className="px-8 text-center">
                     {isRealizado ? (
                       <div className="bg-blue-600 text-white px-6 py-3 rounded-xl mb-2">
                         <p className="text-2xl font-bold">{jogo.resultado}</p>
@@ -80,7 +80,7 @@ export default function Calendar() {
                         {jogo.hora && <p className="text-lg font-bold text-emerald-800 mt-1">{jogo.hora}</p>}
                       </div>
                     )}
-                  </div>
+                  </div>}
 
                   {/* Fora */}
                   <div className="flex items-center gap-4 flex-1 justify-end">
