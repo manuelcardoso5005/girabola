@@ -1,6 +1,6 @@
 import { objecto } from "@/src/data/data";
 import LayoutPage from "@/src/components/LayoutPage";
-import Legend from "./components/legend";
+//import Legend from "./components/legend";
 import TabelaClassificacao from "./components/tableCassification";
 
 export default function Classificacao() {
@@ -35,7 +35,7 @@ export default function Classificacao() {
         clubs={objecto.clubs}
         getUltimosResultados={getUltimosResultados}
       />
-      <Legend />
+      {/* <Legend /> */}
     </LayoutPage>
   );
 }

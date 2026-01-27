@@ -298,7 +298,7 @@ calendar: [
     { name: "Taça CAF", slots: 1, qualificationPositions: [3] },
   ],
 
-  relegation: { slots: 1, positions: [4], leagueBelow: "Segunda Divisão" },
+  relegation: { slots: 1, positions: [14,15, 16], leagueBelow: "Segunda Divisão" },
 
   pastSeasons: [], // preencher depois
 };

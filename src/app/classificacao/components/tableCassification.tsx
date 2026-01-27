@@ -13,171 +13,196 @@ export default function TabelaClassificacao({
   clubs,
   getUltimosResultados,
 }: TabelaClassificacaoProps) {
-  function getClubLogoAndName(clubId: number) {
-    const club = clubs.find(c => c.id === clubId);
-    if (!club) return { logo: "", nome: "Desconhecido" };
-    return { logo: club.logo, nome: club.nome };
+
+  const championsPositions =
+    objecto.internationalCompetitions.find(
+      c => c.name === "Liga dos Campeões"
+    )?.qualificationPositions ?? [];
+
+  const cafPositions =
+    objecto.internationalCompetitions.find(
+      c => c.name === "Taça CAF"
+    )?.qualificationPositions ?? [];
+
+  function getClub(clubId: number) {
+    return clubs.find(c => c.id === clubId);
   }
 
+  function getStats(clubId: number) {
+    return clubStats.find(c => c.club === clubId);
+  }
+
+  const legendItems = [
+    ...objecto.internationalCompetitions.map(comp => ({
+      name: comp.name,
+      color:
+        comp.name === "Liga dos Campeões"
+          ? "bg-blue-600"
+          : comp.name === "Taça CAF"
+          ? "bg-emerald-600"
+          : "bg-gray-500",
+    })),
+    {
+      name: "Zona de Despromoção",
+      color: "bg-red-600",
+    },
+  ];
+
+
   return (
-    <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+    <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
+      {/* Cabeçalho da Tabela */}
+      <div className="bg-linear-to-r from-slate-800 to-slate-700 px-6 py-4">
+        <h2 className="text-xl font-bold text-white">Classificação</h2>
+      </div>
+
+      {/* Tabela */}
       <div className="overflow-x-auto">
         <table className="w-full">
           <thead>
-            <tr className="bg-linear-to-r from-slate-700 to-slate-800 text-white">
-              <th className="p-4 text-left font-semibold">#</th>
-              <th className="p-4 text-left font-semibold">Equipa</th>
-              <th className="p-4 text-center font-semibold">J</th>
-              <th className="p-4 text-center font-semibold">V</th>
-              <th className="p-4 text-center font-semibold">E</th>
-              <th className="p-4 text-center font-semibold">D</th>
-              <th className="p-4 text-center font-semibold">GM</th>
-              <th className="p-4 text-center font-semibold">GS</th>
-              <th className="p-4 text-center font-semibold">SG</th>
-              <th className="p-4 text-center font-semibold">Pts</th>
-              <th className="p-4 text-center font-semibold">Últimos 5</th>
+            <tr className="bg-slate-100 border-b-2 border-slate-200">
+              <th className="p-3 text-sm font-semibold text-slate-700 text-center">#</th>
+              <th className="p-3 text-sm font-semibold text-slate-700 text-left">Equipa</th>
+              <th className="p-3 text-sm font-semibold text-slate-700 text-center" title="Jogos">J</th>
+              <th className="p-3 text-sm font-semibold text-slate-700 text-center" title="Vitórias">V</th>
+              <th className="p-3 text-sm font-semibold text-slate-700 text-center" title="Empates">E</th>
+              <th className="p-3 text-sm font-semibold text-slate-700 text-center" title="Derrotas">D</th>
+              <th className="p-3 text-sm font-semibold text-slate-700 text-center" title="Golos Marcados">GM</th>
+              <th className="p-3 text-sm font-semibold text-slate-700 text-center" title="Golos Sofridos">GS</th>
+              <th className="p-3 text-sm font-semibold text-slate-700 text-center" title="Saldo de Golos">SG</th>
+              <th className="p-3 text-sm font-semibold text-slate-700 text-center">Pts</th>
+              <th className="p-3 text-sm font-semibold text-slate-700 text-center">Forma</th>
             </tr>
           </thead>
+
           <tbody>
-            {standings.map((time) => {
-              const isTop2 = time.position <= 2;
-              const isRelegated = time.relegated;
+            {standings.map((time, index) => {
+              const club = getClub(time.club as number);
+              const stats = getStats(time.club as number);
+
+              const isChampions = championsPositions.includes(time.position);
+              const isCAF = cafPositions.includes(time.position);
+              const relegationPositions = objecto.relegation.positions;
+              const isRelegated = relegationPositions.includes(time.position);
 
               return (
                 <tr
                   key={time.club}
-                  className={`border-b border-slate-100 hover:bg-slate-50 transition-colors ${
-                    isTop2 ? "bg-emerald-50" : isRelegated ? "bg-red-50" : ""
+                  className={`border-b border-gray-100 hover:bg-gray-50 transition-colors ${
+                    isChampions
+                      ? "bg-blue-300/20 hover:bg-blue-50"
+                      : isCAF
+                      ? "bg-emerald-300/20 hover:bg-emerald-50"
+                      : isRelegated
+                      ? "bg-red-300/20 hover:bg-red-50"
+                      : ""
                   }`}
                 >
-                  {/* Posição */}
-                  <td className="p-4">
-                    <div
-                      className={`w-8 h-8 rounded-lg flex items-center justify-center font-bold ${
-                        isTop2
-                          ? "bg-emerald-500 text-white"
-                          : isRelegated
-                          ? "bg-red-500 text-white"
-                          : "bg-slate-200 text-slate-700"
-                      }`}
-                    >
-                      {time.position}
+                  {/* POSIÇÃO */}
+                  <td className="p-3 text-center">
+                    <div className="flex items-center justify-center">
+                      <span
+                        className={`w-7 h-7 flex items-center justify-center rounded-md font-bold text-sm ${
+                          isChampions
+                            ? "bg-blue-600 text-white"
+                            : isCAF
+                            ? "bg-emerald-600 text-white"
+                            : isRelegated
+                            ? "bg-red-600 text-white"
+                            : "bg-gray-100 text-gray-700"
+                        }`}
+                      >
+                        {time.position}
+                      </span>
                     </div>
                   </td>
 
-                  {/* Clube */}
-                  <td className="p-4 flex items-center gap-2">
-                    {(() => {
-                      const { logo, nome } = getClubLogoAndName(time.club as number);
-                      return (
-                        <>
-                          <img
-                            src={logo}
-                            alt={nome}
-                            className="w-6 h-6 object-contain rounded-full"
-                          />
-                          <span className="font-semibold text-slate-800">{nome}</span>
-                        </>
-                      );
-                    })()}
+                  {/* CLUBE */}
+                  <td className="p-3">
+                    <div className="flex items-center gap-3">
+                      <img
+                        src={club?.logo}
+                        className="w-8 h-8 object-contain"
+                        alt={club?.nome}
+                      />
+                      <span className="font-semibold text-gray-800 text-sm">
+                        {club?.nome}
+                      </span>
+                    </div>
                   </td>
 
-                  {/* Jogos */}
-                  <td className="p-4 text-center text-slate-600">
+                  {/* Estatísticas */}
+                  <td className="p-3 text-center text-gray-700 text-sm font-medium">
                     {time.wins + time.draws + time.losses}
                   </td>
 
-                  {/* Vitórias */}
-                  <td className="p-4 text-center">
-                    <span className="inline-block bg-green-100 text-green-700 px-2 py-1 rounded font-semibold text-sm">
-                      {time.wins}
-                    </span>
+                  <td className="p-3 text-center text-green-700 text-sm font-semibold">
+                    {time.wins}
                   </td>
 
-                  {/* Empates */}
-                  <td className="p-4 text-center">
-                    <span className="inline-block bg-yellow-100 text-yellow-700 px-2 py-1 rounded font-semibold text-sm">
-                      {time.draws}
-                    </span>
+                  <td className="p-3 text-center text-gray-600 text-sm font-medium">
+                    {time.draws}
                   </td>
 
-                  {/* Derrotas */}
-                  <td className="p-4 text-center">
-                    <span className="inline-block bg-red-100 text-red-700 px-2 py-1 rounded font-semibold text-sm">
-                      {time.losses}
-                    </span>
+                  <td className="p-3 text-center text-red-600 text-sm font-semibold">
+                    {time.losses}
                   </td>
 
-                  {/* GM */}
-                  <td className="p-4 text-center font-medium text-slate-700">
-                    {clubStats.find((c) => c.club === time.club)?.goalsFor || 0}
+                  <td className="p-3 text-center text-gray-700 text-sm font-medium">
+                    {stats?.goalsFor ?? 0}
                   </td>
 
-                  {/* GS */}
-                  <td className="p-4 text-center font-medium text-slate-700">
-                    {clubStats.find((c) => c.club === time.club)?.goalsAgainst || 0}
+                  <td className="p-3 text-center text-gray-700 text-sm font-medium">
+                    {stats?.goalsAgainst ?? 0}
                   </td>
 
-                  {/* SG */}
-                  <td className="p-4 text-center">
+                  <td className="p-3 text-center">
                     <span
-                      className={`font-semibold ${
-                        (clubStats.find((c) => c.club === time.club)?.goalDifference || 0) > 0
-                          ? "text-green-600"
-                          : (clubStats.find((c) => c.club === time.club)?.goalDifference || 0) < 0
+                      className={`font-bold text-sm ${
+                        (stats?.goalDifference ?? 0) > 0
+                          ? "text-green-700"
+                          : (stats?.goalDifference ?? 0) < 0
                           ? "text-red-600"
-                          : "text-slate-600"
+                          : "text-gray-600"
                       }`}
                     >
-                      {(clubStats.find((c) => c.club === time.club)?.goalDifference || 0) > 0
-                        ? "+"
-                        : ""}
-                      {clubStats.find((c) => c.club === time.club)?.goalDifference || 0}
+                      {(stats?.goalDifference ?? 0) > 0 ? "+" : ""}
+                      {stats?.goalDifference ?? 0}
                     </span>
                   </td>
 
-                  {/* Pontos */}
-                  <td className="p-4 text-center">
-                    <span className="inline-block bg-blue-600 text-white px-3 py-1 rounded-lg font-bold">
+                  <td className="p-3 text-center">
+                    <span className="font-bold text-slate-800 text-base">
                       {time.points}
                     </span>
                   </td>
 
-                  {/* Últimos 5 */}
-                  <td className="p-4">
-                    <div className="flex gap-1.5 justify-center">
-                      {getUltimosResultados(Number(time.club))
-                        .slice()
-                        .reverse()
-                        .map((r, i) => {
-                          const isLatest = i === 4;
-                          const config = {
-                            W: { bg: "bg-green-500", text: "V", label: "Vitória" },
-                            D: { bg: "bg-yellow-500", text: "E", label: "Empate" },
-                            L: { bg: "bg-red-500", text: "D", label: "Derrota" },
-                          };
-                          const current = config[r] || config.L;
-
-                          return (
-                            <div
-                              key={i}
-                              className={`
-                                w-7 h-7 rounded-full flex items-center justify-center
-                                font-bold text-xs text-white shadow-sm
-                                transition-all duration-200
-                                ${current.bg}
-                                ${
-                                  isLatest
-                                    ? "ring-2 ring-blue-400 ring-offset-2 scale-110"
-                                    : "opacity-80 hover:opacity-100"
-                                }
-                              `}
-                              title={current.label}
-                            >
-                              {current.text}
-                            </div>
-                          );
-                        })}
+                  {/* ÚLTIMOS 5 RESULTADOS */}
+                  <td className="p-3">
+                    <div className="flex gap-1 justify-center">
+                      {getUltimosResultados(time.club as number)
+                        .slice(-5)
+                        .map((r, i) => (
+                          <span
+                            key={i}
+                            className={`w-7 h-7 flex items-center justify-center rounded-md text-white text-xs font-bold shadow-sm ${
+                              r === "W"
+                                ? "bg-green-600"
+                                : r === "D"
+                                ? "bg-gray-500"
+                                : "bg-red-600"
+                            }`}
+                            title={
+                              r === "W"
+                                ? "Vitória"
+                                : r === "D"
+                                ? "Empate"
+                                : "Derrota"
+                            }
+                          >
+                            {r === "W" ? "V" : r === "D" ? "E" : "D"}
+                          </span>
+                        ))}
                     </div>
                   </td>
                 </tr>
@@ -185,6 +210,18 @@ export default function TabelaClassificacao({
             })}
           </tbody>
         </table>
+      </div>
+
+      {/* Legenda */}   
+      <div className="bg-gray-50 px-6 py-4 border-t border-gray-200">
+        <div className="flex flex-wrap gap-6 text-sm">
+          {legendItems.map((item, i) => (
+            <div key={i} className="flex items-center gap-2">
+              <span className={`w-4 h-4 rounded ${item.color}`}></span>
+              <span className="text-gray-700">{item.name}</span>
+            </div>
+          ))}
+        </div> 
       </div>
     </div>
   );
