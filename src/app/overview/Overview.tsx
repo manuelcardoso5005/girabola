@@ -63,7 +63,7 @@ export default function Overview() {
         <div className="lg:col-span-2 space-y-4">
           {/* Header */}
           <div className="flex items-center justify-between mb-2">
-            <h3 className="text-xl font-bold text-slate-800">Próximos Jogos</h3>
+            <h3 className="text-xl font-bold text-slate-800">Jogos</h3>
             <Link 
               href="/jogos"
               className="flex items-center gap-2 text-blue-600 hover:text-blue-700 font-semibold text-sm transition-colors group"
@@ -159,10 +159,12 @@ export default function Overview() {
             <div className="flex items-center justify-between mb-4">
               {/* Subtitle */}
               <div className="mb-4 pb-3 border-b border-slate-100">
-                <p className="text-slate-500 text-xs font-medium">Girabola 2025/2026</p>
+                <p className="text-slate-500 text-xs font-medium">
+                  {objecto.competicao[0].nome} {objecto.epoca}
+                </p>
               </div>
               <Link href="/classificacao" className="group">
-                <ChevronRight className="w-5 h-5 text-slate-400 group-hover:text-slate-800 transition-colors group-hover:translate-x-1 transition-transform" />
+                <ChevronRight className="w-5 h-5 text-slate-400 group-hover:text-slate-800 transition group-hover:translate-x-1" />
               </Link>
             </div>
 
@@ -272,7 +274,7 @@ export default function Overview() {
           <div className="grid grid-cols-2 gap-3">
             {/* Jornada Atual */}
             <Link href="/calendario" className="block group">
-              <div className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-4 shadow-lg hover:shadow-xl transition-all">
+              <div className="bg-linear-to-br from-blue-500 to-blue-600 rounded-xl p-4 shadow-lg hover:shadow-xl transition-all">
                 <div className="flex items-center gap-2 mb-2">
                   <Calendar className="w-4 h-4 text-blue-50" />
                   <span className="text-blue-50 text-xs font-semibold uppercase tracking-wide">Jornada</span>
@@ -283,7 +285,7 @@ export default function Overview() {
             </Link>
 
             {/* Jogos Realizados */}
-            <div className="bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl p-4 shadow-lg hover:shadow-xl transition-all">
+            <div className="bg-linear-to-br from-emerald-500 to-emerald-600 rounded-xl p-4 shadow-lg hover:shadow-xl transition-all">
               <div className="flex items-center gap-2 mb-2">
                 <Trophy className="w-4 h-4 text-emerald-50" />
                 <span className="text-emerald-50 text-xs font-semibold uppercase tracking-wide">Jogos</span>
@@ -294,7 +296,7 @@ export default function Overview() {
           </div>
 
           {/* Golos Totais */}
-          <div className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl p-4 shadow-lg hover:shadow-xl transition-all">
+          <div className="bg-linear-to-br from-orange-500 to-orange-600 rounded-xl p-4 shadow-lg hover:shadow-xl transition-all">
             <div className="flex items-center justify-between">
               <div>
                 <div className="flex items-center gap-2 mb-2">

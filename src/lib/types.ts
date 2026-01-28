@@ -77,7 +77,7 @@ export interface Rodada {
 
 export interface Standing {
   position: number;
-  club: number | string;
+  club: number;
   points: number;
   wins: number;
   draws: number;
