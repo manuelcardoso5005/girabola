@@ -19,6 +19,26 @@ export interface ClubStats {
   points: number;
 }
 
+export interface ClubStats {
+  club: number | string; // id ou nome
+  jogos: number;
+  wins: number;
+  draws: number;
+  losses: number;
+  goalsFor: number;
+  goalsAgainst: number;
+  goalDifference: number;
+  points: number;
+}
+
+export interface TopScorerDetail {
+  player: string;
+  club: number | string;
+  goals: number;
+  assists: number;
+  jogos: number;
+}
+
 export interface Competicao {
   id?: number;
   nome: string;
@@ -43,6 +63,11 @@ export interface Jogo {
   data?: string;
   logoCasa?: string;
   logoFora?: string;
+  arbitro: string;
+  publico?: number | String;
+  transmissao?: string;
+  temperatura?: string;
+  clima?: string;
   hora?: string;
 }
 export interface Rodada {
@@ -74,11 +99,23 @@ export interface Relegation {
 }
 
 export interface PastSeason {
+  id: number;
   season: string;
-  champion: string;
-  relegated: string[];
-  topScorers: TopScorer[];
+  start: string;
+  end: string;
+  totalClubs: number;
+  totalRounds: number;
+  champion: number | string;
+  relegated?: number[];
+  topScorers?: TopScorerDetail[];
+  clubs: number[];
+  qualifiedFor?: {
+    championsLeague: number[];
+    cafCup: number[];
+  };
   standings: Standing[];
+  clubStats: ClubStats[];
+  
 }
 
 export interface data {

@@ -46,83 +46,88 @@ export const objecto: data = {
   ],
 
 calendar: [
-  // Primeira volta
+  // Jornada 1
   {
      jornada: 1,
       jogos: [
-        { id: 1, casa: 1, fora: 2, resultado: "1 - 0", data: "2026-01-25", hora: "16:00" },
-        { id: 2, casa: 3, fora: 4, resultado: "1 - 1", data: "2026-01-25", hora: "18:00" },
-        { id: 3, casa: 5, fora: 6, resultado: "2 - 0", data: "2026-01-26", hora: "15:00" },
-        { id: 4, casa: 7, fora: 8, resultado: "0 - 0", data: "2026-01-26", hora: "15:00" },
-        { id: 5, casa: 9, fora: 10, resultado: "1 - 2", data: "2026-01-26", hora: "16:00" },
-        { id: 6, casa: 11, fora: 12, resultado: "3 - 1", data: "2026-01-26", hora: "16:00" },
-        { id: 7, casa: 13, fora: 14, resultado: "0 - 1", data: "2026-01-26", hora: "17:00" },
-        { id: 8, casa: 15, fora: 16, resultado: "2 - 2", data: "2026-01-26", hora: "17:00" },
+        { id: 1, casa: 1, fora: 2, resultado: "1 - 0", data: "2026-01-25", hora: "16:00", arbitro: "João Silva", publico: "8.500", transmissao: "TPA 1", temperatura: "29°C" },
+        { id: 2, casa: 3, fora: 4, resultado: "1 - 1", data: "2026-01-25", hora: "18:00", arbitro: "Manuel Santos", publico: "12.300", transmissao: "TPA 1", temperatura: "27°C" },
+        { id: 3, casa: 5, fora: 6, resultado: "2 - 0", data: "2026-01-26", hora: "15:00", arbitro: "Carlos Mateus", publico: "6.200", transmissao: "TPA 2", temperatura: "31°C" },
+        { id: 4, casa: 7, fora: 8, resultado: "0 - 0", data: "2026-01-26", hora: "15:00", arbitro: "Pedro Afonso", publico: "5.800", transmissao: "ZAP Viva", temperatura: "28°C" },
+        { id: 5, casa: 9, fora: 10, resultado: "1 - 2", data: "2026-01-26", hora: "16:00", arbitro: "António Dias", publico: "9.100", transmissao: "TPA 1", temperatura: "30°C" },
+        { id: 6, casa: 11, fora: 12, resultado: "3 - 1", data: "2026-01-26", hora: "16:00", arbitro: "Francisco Neto", publico: "7.400", transmissao: "TPA 2", temperatura: "29°C" },
+        { id: 7, casa: 13, fora: 14, resultado: "0 - 1", data: "2026-01-26", hora: "17:00", arbitro: "Miguel Costa", publico: "4.900", transmissao: "ZAP Viva", temperatura: "26°C" },
+        { id: 8, casa: 15, fora: 16, resultado: "2 - 2", data: "2026-01-26", hora: "17:00", arbitro: "Ricardo Fernandes", publico: "5.300", transmissao: "TPA 1", temperatura: "27°C" },
       ],
   },
+  // Jornada 2
   {
     jornada: 2,
     jogos: [
-      { id: 9, casa: 2, fora: 1, resultado: "2 - 2", data: "2026-02-01", hora: "16:00" },
-      { id: 10, casa: 4, fora: 3, resultado: "1 - 0", data: "2026-02-01", hora: "18:00" },
-      { id: 11, casa: 6, fora: 5, resultado: "0 - 1", data: "2026-02-02", hora: "15:00" },
-      { id: 12, casa: 8, fora: 7, resultado: "2 - 2", data: "2026-02-02", hora: "15:00" },
-      { id: 13, casa: 10, fora: 9, resultado: "1 - 1", data: "2026-02-02", hora: "16:00" },
-      { id: 14, casa: 12, fora: 11, resultado: "0 - 2", data: "2026-02-02", hora: "16:00" },
-      { id: 15, casa: 14, fora: 13, resultado: "3 - 1", data: "2026-02-02", hora: "17:00" },
-      { id: 16, casa: 16, fora: 15, resultado: "1 - 0", data: "2026-02-02", hora: "17:00" },
+      { id: 9, casa: 2, fora: 1, resultado: "2 - 2", data: "2026-02-01", hora: "16:00", arbitro: "Hélder Rodrigues", publico: "11.200", transmissao: "TPA 1", temperatura: "28°C" },
+      { id: 10, casa: 4, fora: 3, resultado: "1 - 0", data: "2026-02-01", hora: "18:00", arbitro: "Paulo Martins", publico: "14.500", transmissao: "TPA 1", temperatura: "26°C" },
+      { id: 11, casa: 6, fora: 5, resultado: "0 - 1", data: "2026-02-02", hora: "15:00", arbitro: "André Gomes", publico: "7.800", transmissao: "TPA 2", temperatura: "30°C" },
+      { id: 12, casa: 8, fora: 7, resultado: "2 - 2", data: "2026-02-02", hora: "15:00", arbitro: "Bruno Alves", publico: "6.500", transmissao: "ZAP Viva", temperatura: "29°C" },
+      { id: 13, casa: 10, fora: 9, resultado: "1 - 1", data: "2026-02-02", hora: "16:00", arbitro: "Tiago Pereira", publico: "8.900", transmissao: "TPA 1", temperatura: "31°C" },
+      { id: 14, casa: 12, fora: 11, resultado: "0 - 2", data: "2026-02-02", hora: "16:00", arbitro: "Daniel Sousa", publico: "9.400", transmissao: "TPA 2", temperatura: "27°C" },
+      { id: 15, casa: 14, fora: 13, resultado: "3 - 1", data: "2026-02-02", hora: "17:00", arbitro: "Jorge Lopes", publico: "5.600", transmissao: "ZAP Viva", temperatura: "25°C" },
+      { id: 16, casa: 16, fora: 15, resultado: "1 - 0", data: "2026-02-02", hora: "17:00", arbitro: "Sérgio Oliveira", publico: "6.100", transmissao: "TPA 1", temperatura: "26°C" },
     ],
   },
+  // Jornada 3
   {
     jornada: 3,
     jogos: [
-      { id: 17, casa: 1, fora: 4, resultado: "1 - 1", data: "2026-02-08", hora: "16:00" },
-      { id: 18, casa: 2, fora: 3, resultado: "2 - 0", data: "2026-02-08", hora: "18:00" },
-      { id: 19, casa: 5, fora: 6, resultado: "0 - 0", data: "2026-02-09", hora: "15:00" },
-      { id: 20, casa: 7, fora: 8, resultado: "1 - 2", data: "2026-02-09", hora: "15:00" },
-      { id: 21, casa: 9, fora: 10, resultado: "0 - 1", data: "2026-02-09", hora: "16:00" },
-      { id: 22, casa: 11, fora: 12, resultado: "2 - 2", data: "2026-02-09", hora: "16:00" },
-      { id: 23, casa: 13, fora: 14, resultado: "1 - 3", data: "2026-02-09", hora: "17:00" },
-      { id: 24, casa: 15, fora: 16, resultado: "0 - 0", data: "2026-02-09", hora: "17:00" },
+      { id: 17, casa: 1, fora: 4, resultado: "1 - 1", data: "2026-02-08", hora: "16:00", arbitro: "Rui Carvalho", publico: "9.300", transmissao: "TPA 1", temperatura: "30°C" },
+      { id: 18, casa: 2, fora: 3, resultado: "2 - 0", data: "2026-02-08", hora: "18:00", arbitro: "Luís Ferreira", publico: "10.800", transmissao: "TPA 1", temperatura: "28°C" },
+      { id: 19, casa: 5, fora: 6, resultado: "0 - 0", data: "2026-02-09", hora: "15:00", arbitro: "Vasco Ribeiro", publico: "7.100", transmissao: "TPA 2", temperatura: "32°C" },
+      { id: 20, casa: 7, fora: 8, resultado: "1 - 2", data: "2026-02-09", hora: "15:00", arbitro: "Nelson Pinto", publico: "5.400", transmissao: "ZAP Viva", temperatura: "29°C" },
+      { id: 21, casa: 9, fora: 10, resultado: "0 - 1", data: "2026-02-09", hora: "16:00", arbitro: "Fernando Costa", publico: "8.600", transmissao: "TPA 1", temperatura: "31°C" },
+      { id: 22, casa: 11, fora: 12, resultado: "2 - 2", data: "2026-02-09", hora: "16:00", arbitro: "Amadeu Silva", publico: "7.900", transmissao: "TPA 2", temperatura: "28°C" },
+      { id: 23, casa: 13, fora: 14, resultado: "1 - 3", data: "2026-02-09", hora: "17:00", arbitro: "César Mendes", publico: "5.200", transmissao: "ZAP Viva", temperatura: "27°C" },
+      { id: 24, casa: 15, fora: 16, resultado: "0 - 0", data: "2026-02-09", hora: "17:00", arbitro: "Vítor Tavares", publico: "5.700", transmissao: "TPA 1", temperatura: "26°C" },
     ]
   },
+  // Jornada 4
   {
     jornada: 4,
     jogos: [
-      { id: 25, casa: 4, fora: 1, resultado: "2 - 1", data: "2026-02-15", hora: "16:00" },
-      { id: 26, casa: 3, fora: 2, resultado: "1 - 1", data: "2026-02-15", hora: "18:00" },
-      { id: 27, casa: 6, fora: 5, resultado: "3 - 0", data: "2026-02-16", hora: "15:00" },
-      { id: 28, casa: 8, fora: 7, resultado: "2 - 2", data: "2026-02-16", hora: "15:00" },
-      { id: 29, casa: 10, fora: 9, resultado: "1 - 0", data: "2026-02-16", hora: "16:00" },
-      { id: 30, casa: 12, fora: 11, resultado: "0 - 1", data: "2026-02-16", hora: "16:00" },
-      { id: 31, casa: 14, fora: 13, resultado: "2 - 0", data: "2026-02-16", hora: "17:00" },
-      { id: 32, casa: 16, fora: 15, resultado: "1 - 1", data: "2026-02-16", hora: "17:00" },
+      { id: 25, casa: 4, fora: 1, resultado: "2 - 1", data: "2026-02-15", hora: "16:00", arbitro: "Alberto Nunes", publico: "15.200", transmissao: "TPA 1", temperatura: "29°C" },
+      { id: 26, casa: 3, fora: 2, resultado: "1 - 1", data: "2026-02-15", hora: "18:00", arbitro: "Mário Campos", publico: "13.700", transmissao: "TPA 1", temperatura: "27°C" },
+      { id: 27, casa: 6, fora: 5, resultado: "3 - 0", data: "2026-02-16", hora: "15:00", arbitro: "Eduardo Reis", publico: "8.400", transmissao: "TPA 2", temperatura: "31°C" },
+      { id: 28, casa: 8, fora: 7, resultado: "2 - 2", data: "2026-02-16", hora: "15:00", arbitro: "Gonçalo Rocha", publico: "6.800", transmissao: "ZAP Viva", temperatura: "30°C" },
+      { id: 29, casa: 10, fora: 9, resultado: "1 - 0", data: "2026-02-16", hora: "16:00", arbitro: "Filipe Moreira", publico: "9.500", transmissao: "TPA 1", temperatura: "32°C" },
+      { id: 30, casa: 12, fora: 11, resultado: "0 - 1", data: "2026-02-16", hora: "16:00", arbitro: "Renato Lima", publico: "8.200", transmissao: "TPA 2", temperatura: "28°C" },
+      { id: 31, casa: 14, fora: 13, resultado: "2 - 0", data: "2026-02-16", hora: "17:00", arbitro: "Nuno Barbosa", publico: "6.300", transmissao: "ZAP Viva", temperatura: "26°C" },
+      { id: 32, casa: 16, fora: 15, resultado: "1 - 1", data: "2026-02-16", hora: "17:00", arbitro: "Cristiano Faria", publico: "5.900", transmissao: "TPA 1", temperatura: "27°C" },
     ]
   },
+  // Jornada 5
   {
     jornada: 5,
     jogos: [
-      { id: 33, casa: 1, fora: 2, resultado: "1 - 2", data: "2026-02-22", hora: "16:00" },
-      { id: 34, casa: 3, fora: 4, resultado: "0 - 1", data: "2026-02-22", hora: "18:00" },
-      { id: 35, casa: 5, fora: 6, resultado: "2 - 2", data: "2026-02-23", hora: "15:00" },
-      { id: 36, casa: 7, fora: 8, resultado: "1 - 0", data: "2026-02-23", hora: "15:00" },
-      { id: 37, casa: 9, fora: 10, resultado: "0 - 0", data: "2026-02-23", hora: "16:00" },
-      { id: 38, casa: 11, fora: 12, resultado: "3 - 1", data: "2026-02-23", hora: "16:00" },
-      { id: 39, casa: 13, fora: 14, resultado: "1 - 1", data: "2026-02-23", hora: "17:00" },
-      { id: 40, casa: 15, fora: 16, resultado: "2 - 0", data: "2026-02-23", hora: "17:00" },
+      { id: 33, casa: 1, fora: 2, resultado: "1 - 2", data: "2026-02-22", hora: "16:00", arbitro: "Diogo Cardoso", publico: "9.700", transmissao: "TPA 1", temperatura: "30°C" },
+      { id: 34, casa: 3, fora: 4, resultado: "0 - 1", data: "2026-02-22", hora: "18:00", arbitro: "Hugo Monteiro", publico: "14.100", transmissao: "TPA 1", temperatura: "28°C" },
+      { id: 35, casa: 5, fora: 6, resultado: "2 - 2", data: "2026-02-23", hora: "15:00", arbitro: "Jaime Correia", publico: "7.600", transmissao: "TPA 2", temperatura: "33°C" },
+      { id: 36, casa: 7, fora: 8, resultado: "1 - 0", data: "2026-02-23", hora: "15:00", arbitro: "Leonardo Baptista", publico: "6.100", transmissao: "ZAP Viva", temperatura: "29°C" },
+      { id: 37, casa: 9, fora: 10, resultado: "0 - 0", data: "2026-02-23", hora: "16:00", arbitro: "Marco Antunes", publico: "8.800", transmissao: "TPA 1", temperatura: "31°C" },
+      { id: 38, casa: 11, fora: 12, resultado: "3 - 1", data: "2026-02-23", hora: "16:00", arbitro: "Orlando Fonseca", publico: "8.300", transmissao: "TPA 2", temperatura: "29°C" },
+      { id: 39, casa: 13, fora: 14, resultado: "1 - 1", data: "2026-02-23", hora: "17:00", arbitro: "Patricio Vicente", publico: "5.500", transmissao: "ZAP Viva", temperatura: "27°C" },
+      { id: 40, casa: 15, fora: 16, resultado: "2 - 0", data: "2026-02-23", hora: "17:00", arbitro: "Quim Teixeira", publico: "6.400", transmissao: "TPA 1", temperatura: "28°C" },
     ]
   },
+  // Jornada 6 (Jogos Futuros)
   {
     jornada: 6,
       jogos: [
-        { id: 41, casa: 1, fora: 4, hora: "16:00" },
-        { id: 42, casa: 2, fora: 3, hora: "18:00" },
-        { id: 43, casa: 5, fora: 8, hora: "15:00" },
-        { id: 44, casa: 6, fora: 7, hora: "15:00" },
-        { id: 45, casa: 9, fora: 12, hora: "16:00" },
-        { id: 46, casa: 10, fora: 11, hora: "16:00" },
-        { id: 47, casa: 13, fora: 16, hora: "17:00" },
-        { id: 48, casa: 14, fora: 15, hora: "17:00" },
+        { id: 41, casa: 1, fora: 4, data: "2026-03-01", hora: "16:00", arbitro: "Roberto Marques", transmissao: "TPA 1", clima: "Ensolarado" },
+        { id: 42, casa: 2, fora: 3, data: "2026-03-01", hora: "18:00", arbitro: "Samuel Duarte", transmissao: "TPA 1", clima: "Parcialmente Nublado" },
+        { id: 43, casa: 5, fora: 8, data: "2026-03-02", hora: "15:00", arbitro: "Tomás Araújo", transmissao: "TPA 2", clima: "Ensolarado" },
+        { id: 44, casa: 6, fora: 7, data: "2026-03-02", hora: "15:00", arbitro: "Ulisses Ramos", transmissao: "ZAP Viva", clima: "Nublado" },
+        { id: 45, casa: 9, fora: 12, data: "2026-03-02", hora: "16:00", arbitro: "Valter Pires", transmissao: "TPA 1", clima: "Ensolarado" },
+        { id: 46, casa: 10, fora: 11, data: "2026-03-02", hora: "16:00", arbitro: "Xavier Domingues", transmissao: "TPA 2", clima: "Parcialmente Nublado" },
+        { id: 47, casa: 13, fora: 16, data: "2026-03-02", hora: "17:00", arbitro: "Yuri Leal", transmissao: "ZAP Viva", clima: "Ensolarado" },
+        { id: 48, casa: 14, fora: 15, data: "2026-03-02", hora: "17:00", arbitro: "Zacarias Bento", transmissao: "TPA 1", clima: "Nublado" },
       ],
   }
 ],
@@ -300,10 +305,214 @@ calendar: [
 
   relegation: { slots: 1, positions: [14,15, 16], leagueBelow: "Segunda Divisão" },
 
-  pastSeasons: [], // preencher depois
+  pastSeasons: [
+  {
+    id: 1,
+    season: "2024/2025",
+    champion: 4, // Petro de Luanda
+    start: "2025-01-20",
+    end: "2025-04-10",
+    totalClubs: 16,
+    totalRounds: 30,
+    clubs: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16], 
+     standings: [
+    {
+      position: 1,
+      club: 4, // Petro de Luanda - CAMPEÃO
+      points: 71,
+      wins: 22,
+      draws: 5,
+      losses: 3,
+      competition: "Liga dos Campeões",
+      relegated: false,
+    },
+    {
+      position: 2,
+      club: 3, // 1º de Agosto
+      points: 68,
+      wins: 21,
+      draws: 5,
+      losses: 4,
+      competition: "Liga dos Campeões",
+      relegated: false,
+    },
+    {
+      position: 3,
+      club: 5, // Sagrada Esperança
+      points: 61,
+      wins: 18,
+      draws: 7,
+      losses: 5,
+      competition: "Taça CAF",
+      relegated: false,
+    },
+    {
+      position: 4,
+      club: 8, // Recreativo do Libolo
+      points: 58,
+      wins: 17,
+      draws: 7,
+      losses: 6,
+      competition: "",
+      relegated: false,
+    },
+    {
+      position: 5,
+      club: 2, // Kabuscorp
+      points: 54,
+      wins: 16,
+      draws: 6,
+      losses: 8,
+      competition: "",
+      relegated: false,
+    },
+    {
+      position: 6,
+      club: 9, // Interclube
+      points: 52,
+      wins: 15,
+      draws: 7,
+      losses: 8,
+      competition: "",
+      relegated: false,
+    },
+    {
+      position: 7,
+      club: 6, // Desportivo da Huíla
+      points: 49,
+      wins: 14,
+      draws: 7,
+      losses: 9,
+      competition: "",
+      relegated: false,
+    },
+    {
+      position: 8,
+      club: 10, // Bravos do Maquis
+      points: 47,
+      wins: 13,
+      draws: 8,
+      losses: 9,
+      competition: "",
+      relegated: false,
+    },
+    {
+      position: 9,
+      club: 1, // Wiliete
+      points: 44,
+      wins: 12,
+      draws: 8,
+      losses: 10,
+      competition: "",
+      relegated: false,
+    },
+    {
+      position: 10,
+      club: 11, // Guelson FC
+      points: 41,
+      wins: 11,
+      draws: 8,
+      losses: 11,
+      competition: "",
+      relegated: false,
+    },
+    {
+      position: 11,
+      club: 7, // Académica do Lobito
+      points: 38,
+      wins: 10,
+      draws: 8,
+      losses: 12,
+      competition: "",
+      relegated: false,
+    },
+    {
+      position: 12,
+      club: 12, // Luanda City
+      points: 35,
+      wins: 9,
+      draws: 8,
+      losses: 13,
+      competition: "",
+      relegated: false,
+    },
+    {
+      position: 13,
+      club: 13, // Redonda FC
+      points: 30,
+      wins: 7,
+      draws: 9,
+      losses: 14,
+      competition: "",
+      relegated: false,
+    },
+    {
+      position: 14,
+      club: 14, // São Salvador - DESPROMOVIDO
+      points: 26,
+      wins: 6,
+      draws: 8,
+      losses: 16,
+      competition: "",
+      relegated: true,
+    },
+    {
+      position: 15,
+      club: 15, // Lunda Sul - DESPROMOVIDO
+      points: 22,
+      wins: 5,
+      draws: 7,
+      losses: 18,
+      competition: "",
+      relegated: true,
+    },
+    {
+      position: 16,
+      club: 16, // 1º de Maio - DESPROMOVIDO
+      points: 18,
+      wins: 4,
+      draws: 6,
+      losses: 20,
+      competition: "",
+      relegated: true,
+    },
+  ],
+  clubStats: [
+    { club: 1, jogos: 30, wins: 12, draws: 8, losses: 10, goalsFor: 38, goalsAgainst: 35, goalDifference: 3, points: 44 },
+    { club: 2, jogos: 30, wins: 16, draws: 6, losses: 8, goalsFor: 52, goalsAgainst: 34, goalDifference: 18, points: 54 },
+    { club: 3, jogos: 30, wins: 21, draws: 5, losses: 4, goalsFor: 68, goalsAgainst: 28, goalDifference: 40, points: 68 },
+    { club: 4, jogos: 30, wins: 22, draws: 5, losses: 3, goalsFor: 71, goalsAgainst: 21, goalDifference: 50, points: 71 },
+    { club: 5, jogos: 30, wins: 18, draws: 7, losses: 5, goalsFor: 59, goalsAgainst: 30, goalDifference: 29, points: 61 },
+    { club: 6, jogos: 30, wins: 14, draws: 7, losses: 9, goalsFor: 45, goalsAgainst: 38, goalDifference: 7, points: 49 },
+    { club: 7, jogos: 30, wins: 10, draws: 8, losses: 12, goalsFor: 36, goalsAgainst: 41, goalDifference: -5, points: 38 },
+    { club: 8, jogos: 30, wins: 17, draws: 7, losses: 6, goalsFor: 54, goalsAgainst: 32, goalDifference: 22, points: 58 },
+    { club: 9, jogos: 30, wins: 15, draws: 7, losses: 8, goalsFor: 48, goalsAgainst: 35, goalDifference: 13, points: 52 },
+    { club: 10, jogos: 30, wins: 13, draws: 8, losses: 9, goalsFor: 42, goalsAgainst: 37, goalDifference: 5, points: 47 },
+    { club: 11, jogos: 30, wins: 11, draws: 8, losses: 11, goalsFor: 39, goalsAgainst: 40, goalDifference: -1, points: 41 },
+    { club: 12, jogos: 30, wins: 9, draws: 8, losses: 13, goalsFor: 33, goalsAgainst: 44, goalDifference: -11, points: 35 },
+    { club: 13, jogos: 30, wins: 7, draws: 9, losses: 14, goalsFor: 29, goalsAgainst: 48, goalDifference: -19, points: 30 },
+    { club: 14, jogos: 30, wins: 6, draws: 8, losses: 16, goalsFor: 26, goalsAgainst: 51, goalDifference: -25, points: 26 },
+    { club: 15, jogos: 30, wins: 5, draws: 7, losses: 18, goalsFor: 24, goalsAgainst: 58, goalDifference: -34, points: 22 },
+    { club: 16, jogos: 30, wins: 4, draws: 6, losses: 20, goalsFor: 20, goalsAgainst: 62, goalDifference: -42, points: 18 },
+  ],
+  topScorers: [
+    { player: "Tiago Azulão", club: 4, goals: 24, assists: 8, jogos: 28 },
+    { player: "Zito Luvumbo", club: 3, goals: 22, assists: 6, jogos: 30 },
+    { player: "Mabululu", club: 5, goals: 19, assists: 10, jogos: 29 },
+    { player: "Gelson Dala", club: 8, goals: 18, assists: 7, jogos: 30 },
+    { player: "Show", club: 2, goals: 17, assists: 5, jogos: 28 },
+    { player: "Inácio Miguel", club: 9, goals: 15, assists: 9, jogos: 30 },
+    { player: "Danilson", club: 4, goals: 14, assists: 11, jogos: 30 },
+    { player: "Herenilson", club: 6, goals: 13, assists: 4, jogos: 27 },
+    { player: "Jacinto Dala", club: 1, goals: 12, assists: 6, jogos: 29 },
+    { player: "Fredy", club: 10, goals: 11, assists: 8, jogos: 30 },
+  ],
+    relegated: [15, 16],
+    qualifiedFor: {
+      championsLeague: [4, 2],
+      cafCup: [1],
+    },
+  }
+],
+// preencher depois
 };
-
-
-
-
-
