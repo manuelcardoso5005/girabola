@@ -88,11 +88,13 @@ export default function Classificacao() {
       
 
       <TabelaClassificacao
+        key={selectedSeason}
         standings={seasonData.standings}
         clubStats={seasonData.clubStats}
         clubs={seasonData.clubs}
         getUltimosResultados={getUltimosResultados}
       />
+
     </LayoutPage>
   );
 }

@@ -1,4 +1,6 @@
 import { objecto } from "@/src/data/data";
+import { motion } from "framer-motion";
+import type { Variants } from "framer-motion";
 
 interface TabelaClassificacaoProps {
   standings: typeof objecto.standings;
@@ -48,18 +50,97 @@ export default function TabelaClassificacao({
     },
   ];
 
+  // Variantes de animação
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.05,
+      },
+    },
+  };
+
+  const rowVariants: Variants = {
+  hidden: { 
+    opacity: 0, 
+    x: -20,
+  },
+  visible: { 
+    opacity: 1, 
+    x: 0,
+    transition: {
+      type: "spring" as const,
+      stiffness: 100,
+      damping: 15,
+    },
+  },
+};
+
+  const headerVariants = {
+    hidden: { opacity: 0, y: -20 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut" as const,
+      },
+    },
+  };
+
+  const legendVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: {
+        duration: 0.5,
+        delay: 0.3,
+        ease: "easeOut" as const,
+      },
+    },
+  };
+
+  const formBadgeVariants: Variants = {
+  hidden: { scale: 0, opacity: 0 },
+  visible: (i: number) => ({
+    scale: 1,
+    opacity: 1,
+    transition: {
+      delay: i * 0.05,
+      type: "spring" as const,
+      stiffness: 200,
+      damping: 15,
+    },
+  }),
+};
 
   return (
-    <div className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100">
+    <motion.div 
+      className="bg-white rounded-2xl shadow-xl overflow-hidden border border-gray-100"
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+    >
       {/* Cabeçalho da Tabela */}
-      <div className="bg-linear-to-r from-slate-800 to-slate-700 px-6 py-4">
+      <motion.div 
+        className="bg-linear-to-r from-slate-800 to-slate-700 px-6 py-4"
+        variants={headerVariants}
+        initial="hidden"
+        animate="visible"
+      >
         <h2 className="text-xl font-bold text-white">Classificação</h2>
-      </div>
+      </motion.div>
 
       {/* Tabela */}
       <div className="overflow-x-auto">
         <table className="w-full">
-          <thead>
+          <motion.thead
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.4, delay: 0.2 }}
+          >
             <tr className="bg-slate-100 border-b-2 border-slate-200">
               <th className="p-3 text-sm font-semibold text-slate-700 text-center">#</th>
               <th className="p-3 text-sm font-semibold text-slate-700 text-left">Equipa</th>
@@ -73,9 +154,13 @@ export default function TabelaClassificacao({
               <th className="p-3 text-sm font-semibold text-slate-700 text-center">Pts</th>
               <th className="p-3 text-sm font-semibold text-slate-700 text-center">Forma</th>
             </tr>
-          </thead>
+          </motion.thead>
 
-          <tbody>
+          <motion.tbody
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+          >
             {standings.map((time, index) => {
               const club = getClub(time.club as number);
               const stats = getStats(time.club as number);
@@ -86,8 +171,9 @@ export default function TabelaClassificacao({
               const isRelegated = relegationPositions.includes(time.position);
 
               return (
-                <tr
+                <motion.tr
                   key={time.club}
+                  variants={rowVariants}
                   className={`border-b border-gray-100 hover:bg-gray-50 transition-colors ${
                     isChampions
                       ? "bg-blue-300/20 hover:bg-blue-50"
@@ -97,11 +183,15 @@ export default function TabelaClassificacao({
                       ? "bg-red-300/20 hover:bg-red-50"
                       : ""
                   }`}
+                  whileHover={{ 
+                    scale: 1.01,
+                    transition: { duration: 0.2 }
+                  }}
                 >
                   {/* POSIÇÃO */}
                   <td className="p-3 text-center">
                     <div className="flex items-center justify-center">
-                      <span
+                      <motion.span
                         className={`w-7 h-7 flex items-center justify-center rounded-md font-bold text-sm ${
                           isChampions
                             ? "bg-blue-600 text-white"
@@ -111,53 +201,110 @@ export default function TabelaClassificacao({
                             ? "bg-red-600 text-white"
                             : "bg-gray-100 text-gray-700"
                         }`}
+                        initial={{ scale: 0, rotate: -180 }}
+                        animate={{ scale: 1, rotate: 0 }}
+                        transition={{ 
+                          delay: index * 0.05,
+                          type: "spring",
+                          stiffness: 200,
+                          damping: 15
+                        }}
                       >
                         {time.position}
-                      </span>
+                      </motion.span>
                     </div>
                   </td>
 
                   {/* CLUBE */}
                   <td className="p-3">
                     <div className="flex items-center gap-3">
-                      <img
+                      <motion.img
                         src={club?.logo}
                         className="w-8 h-8 object-contain"
                         alt={club?.nome}
+                        initial={{ opacity: 0, scale: 0 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ 
+                          delay: index * 0.05 + 0.1,
+                          type: "spring",
+                          stiffness: 200,
+                          damping: 15
+                        }}
                       />
-                      <span className="font-semibold text-gray-800 text-sm">
+                      <motion.span 
+                        className="font-semibold text-gray-800 text-sm"
+                        initial={{ opacity: 0, x: -10 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.05 + 0.15 }}
+                      >
                         {club?.nome}
-                      </span>
+                      </motion.span>
                     </div>
                   </td>
 
                   {/* Estatísticas */}
                   <td className="p-3 text-center text-gray-700 text-sm font-medium">
-                    {time.wins + time.draws + time.losses}
+                    <motion.span
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: index * 0.05 + 0.2 }}
+                    >
+                      {time.wins + time.draws + time.losses}
+                    </motion.span>
                   </td>
 
                   <td className="p-3 text-center text-green-700 text-sm font-semibold">
-                    {time.wins}
+                    <motion.span
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: index * 0.05 + 0.25 }}
+                    >
+                      {time.wins}
+                    </motion.span>
                   </td>
 
                   <td className="p-3 text-center text-gray-600 text-sm font-medium">
-                    {time.draws}
+                    <motion.span
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: index * 0.05 + 0.3 }}
+                    >
+                      {time.draws}
+                    </motion.span>
                   </td>
 
                   <td className="p-3 text-center text-red-600 text-sm font-semibold">
-                    {time.losses}
+                    <motion.span
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: index * 0.05 + 0.35 }}
+                    >
+                      {time.losses}
+                    </motion.span>
                   </td>
 
                   <td className="p-3 text-center text-gray-700 text-sm font-medium">
-                    {stats?.goalsFor ?? 0}
+                    <motion.span
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: index * 0.05 + 0.4 }}
+                    >
+                      {stats?.goalsFor ?? 0}
+                    </motion.span>
                   </td>
 
                   <td className="p-3 text-center text-gray-700 text-sm font-medium">
-                    {stats?.goalsAgainst ?? 0}
+                    <motion.span
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: index * 0.05 + 0.45 }}
+                    >
+                      {stats?.goalsAgainst ?? 0}
+                    </motion.span>
                   </td>
 
                   <td className="p-3 text-center">
-                    <span
+                    <motion.span
                       className={`font-bold text-sm ${
                         (stats?.goalDifference ?? 0) > 0
                           ? "text-green-700"
@@ -165,16 +312,33 @@ export default function TabelaClassificacao({
                           ? "text-red-600"
                           : "text-gray-600"
                       }`}
+                      initial={{ opacity: 0, scale: 0.5 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ 
+                        delay: index * 0.05 + 0.5,
+                        type: "spring",
+                        stiffness: 150
+                      }}
                     >
                       {(stats?.goalDifference ?? 0) > 0 ? "+" : ""}
                       {stats?.goalDifference ?? 0}
-                    </span>
+                    </motion.span>
                   </td>
 
                   <td className="p-3 text-center">
-                    <span className="font-bold text-slate-800 text-base">
+                    <motion.span 
+                      className="font-bold text-slate-800 text-base"
+                      initial={{ opacity: 0, scale: 0 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ 
+                        delay: index * 0.05 + 0.55,
+                        type: "spring",
+                        stiffness: 200,
+                        damping: 12
+                      }}
+                    >
                       {time.points}
-                    </span>
+                    </motion.span>
                   </td>
 
                   {/* ÚLTIMOS 5 RESULTADOS */}
@@ -183,8 +347,12 @@ export default function TabelaClassificacao({
                       {getUltimosResultados(time.club as number)
                         .slice(-5)
                         .map((r, i) => (
-                          <span
+                          <motion.span
                             key={i}
+                            custom={i}
+                            variants={formBadgeVariants}
+                            initial="hidden"
+                            animate="visible"
                             className={`w-7 h-7 flex items-center justify-center rounded-md text-white text-xs font-bold shadow-sm ${
                               r === "W"
                                 ? "bg-green-600"
@@ -199,30 +367,51 @@ export default function TabelaClassificacao({
                                 ? "Empate"
                                 : "Derrota"
                             }
+                            whileHover={{ 
+                              scale: 1.2,
+                              rotate: 5,
+                              transition: { duration: 0.2 }
+                            }}
                           >
                             {r === "W" ? "V" : r === "D" ? "E" : "D"}
-                          </span>
+                          </motion.span>
                         ))}
                     </div>
                   </td>
-                </tr>
+                </motion.tr>
               );
             })}
-          </tbody>
+          </motion.tbody>
         </table>
       </div>
 
       {/* Legenda */}   
-      <div className="bg-gray-50 px-6 py-4 border-t border-gray-200">
+      <motion.div 
+        className="bg-gray-50 px-6 py-4 border-t border-gray-200"
+        variants={legendVariants}
+        initial="hidden"
+        animate="visible"
+      >
         <div className="flex flex-wrap gap-6 text-sm">
           {legendItems.map((item, i) => (
-            <div key={i} className="flex items-center gap-2">
-              <span className={`w-4 h-4 rounded ${item.color}`}></span>
+            <motion.div 
+              key={i} 
+              className="flex items-center gap-2"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.4 + i * 0.1 }}
+              whileHover={{ scale: 1.05 }}
+            >
+              <motion.span 
+                className={`w-4 h-4 rounded ${item.color}`}
+                whileHover={{ rotate: 180 }}
+                transition={{ duration: 0.3 }}
+              ></motion.span>
               <span className="text-gray-700">{item.name}</span>
-            </div>
+            </motion.div>
           ))}
         </div> 
-      </div>
-    </div>
+      </motion.div>
+    </motion.div>
   );
 }
