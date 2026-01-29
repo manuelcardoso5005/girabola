@@ -22,7 +22,7 @@ export default function StatsCard({ totalJogosRealizados, totalGolos }: Props) {
             transition={{ duration: 0.4, delay: 0.1 }}
             whileHover={{ scale: 1.05, y: -5 }}
             whileTap={{ scale: 0.98 }}
-            className="bg-gradient-to-br from-blue-500 to-blue-600 rounded-xl p-4 shadow-lg hover:shadow-2xl transition-shadow"
+            className="bg-linear-to-br from-blue-500 to-blue-600 rounded-xl p-4 shadow-lg hover:shadow-2xl transition-shadow"
           >
             <motion.div
               initial={{ x: -10, opacity: 0 }}
@@ -55,7 +55,7 @@ export default function StatsCard({ totalJogosRealizados, totalGolos }: Props) {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, delay: 0.2 }}
           whileHover={{ scale: 1.05, y: -5 }}
-          className="bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl p-4 shadow-lg hover:shadow-2xl transition-shadow cursor-pointer"
+          className="bg-linear-to-br from-emerald-500 to-emerald-600 rounded-xl p-4 shadow-lg hover:shadow-2xl transition-shadow cursor-pointer"
         >
           <motion.div
             initial={{ x: -10, opacity: 0 }}
@@ -86,7 +86,7 @@ export default function StatsCard({ totalJogosRealizados, totalGolos }: Props) {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.4, delay: 0.3 }}
         whileHover={{ scale: 1.03, y: -3 }}
-        className="bg-gradient-to-br from-orange-500 to-orange-600 rounded-xl p-4 shadow-lg hover:shadow-2xl transition-shadow cursor-pointer"
+        className="bg-linear-to-br from-orange-500 to-orange-600 rounded-xl p-4 shadow-lg hover:shadow-2xl transition-shadow cursor-pointer"
       >
         <div className="flex items-center justify-between">
           <div>
