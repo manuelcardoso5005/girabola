@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { objecto } from "@/src/data/data";
-import LayoutPage from "@/src/components/LayoutPage";
+import LayoutPage from "@/src/components/Layout/LayoutPage";
 import TabelaClassificacao from "./components/tableCassification";
 
 export default function Classificacao() {

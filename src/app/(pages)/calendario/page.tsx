@@ -2,7 +2,7 @@
 
 import { objecto } from "@/src/data/data";
 import { useState } from "react";
-import LayoutPage from "@/src/components/LayoutPage";
+import LayoutPage from "@/src/components/Layout/LayoutPage";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Calendar() {

@@ -1,6 +1,6 @@
 "use client";
 
-import LayoutPage from "@/src/components/LayoutPage";
+import LayoutPage from "@/src/components/Layout/LayoutPage";
 import ProximosJogos from "./components/NextGames";
 import ClassificacaoCompacta from "./components/CompactClassification";
 import EstatisticasCards from "./components/StatsCard";

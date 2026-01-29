@@ -16,6 +16,7 @@ export default function Header() {
     { href: "/jogos", label: "Jogos" },
     { href: "/calendario", label: "Calendário" },
     { href: "/classificacao", label: "Classificação" },
+    { href: "/clubes", label: "Clubes" },
     { href: "/sobre", label: "Sobre" },
   ];
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { objecto } from "@/src/data/data";
-import LayoutPage from "@/src/components/LayoutPage";
+import LayoutPage from "@/src/components/Layout/LayoutPage";
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 

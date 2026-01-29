@@ -1,4 +1,4 @@
-import LayoutPage from "@/src/components/LayoutPage";
+import LayoutPage from "@/src/components/Layout/LayoutPage";
 
 export default function Sobre() {
     return (

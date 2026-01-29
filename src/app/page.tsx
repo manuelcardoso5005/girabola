@@ -1,4 +1,4 @@
-import Overview from "./overview/Overview";
+import Overview from "./(pages)/overview/Overview";
 export default function IniticialPage() {
   return <Overview />;
 }
