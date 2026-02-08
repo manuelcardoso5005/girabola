@@ -277,7 +277,7 @@ export default function ArtilheirosPage() {
     >
       {/* Estatísticas Gerais */}
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-        <div className="bg-gradient-to-br from-yellow-500 to-orange-600 rounded-xl p-6 text-white shadow-lg">
+        <div className="bg-linear-to-br from-yellow-500 to-orange-600 rounded-xl p-6 text-white shadow-lg">
           <div className="flex items-center justify-between mb-2">
             <span className="text-4xl">⚽</span>
             <div className="text-right">
@@ -287,7 +287,7 @@ export default function ArtilheirosPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-blue-500 to-blue-700 rounded-xl p-6 text-white shadow-lg">
+        <div className="bg-linear-to-br from-blue-500 to-blue-700 rounded-xl p-6 text-white shadow-lg">
           <div className="flex items-center justify-between mb-2">
             <span className="text-4xl">🎯</span>
             <div className="text-right">
@@ -297,7 +297,7 @@ export default function ArtilheirosPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-green-500 to-green-700 rounded-xl p-6 text-white shadow-lg">
+        <div className="bg-linear-to-br from-green-500 to-green-700 rounded-xl p-6 text-white shadow-lg">
           <div className="flex items-center justify-between mb-2">
             <span className="text-4xl">📊</span>
             <div className="text-right">
@@ -307,7 +307,7 @@ export default function ArtilheirosPage() {
           </div>
         </div>
 
-        <div className="bg-gradient-to-br from-purple-500 to-purple-700 rounded-xl p-6 text-white shadow-lg">
+        <div className="bg-linear-to-br from-purple-500 to-purple-700 rounded-xl p-6 text-white shadow-lg">
           <div className="flex items-center justify-between mb-2">
             <span className="text-4xl">👥</span>
             <div className="text-right">

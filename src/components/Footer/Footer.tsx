@@ -37,7 +37,7 @@ export default function Footer() {
       title: "Institucional",
       links: [
         { href: "/sobre", label: "Sobre o Girabola" },
-        { href: "/historia", label: "História" },
+        { href: "/historiaz", label: "História" },
         { href: "/contacto", label: "Contacto" },
       ],
     },
@@ -71,7 +71,7 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 text-slate-300 mt-16 border-t-4 border-red-600">
+    <footer className="bg-linear-to-br from-slate-900 via-slate-800 to-slate-900 text-slate-300 mt-16 border-t-4 border-red-600">
       {/* Conteúdo Principal */}
       <div className="max-w-7xl mx-auto px-6 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-8 mb-8">
