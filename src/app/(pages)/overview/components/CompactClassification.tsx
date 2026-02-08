@@ -97,14 +97,24 @@ export default function CompactClassification({ top5, getClub, getClubStats }: P
                 transition={{ duration: 0.3, delay: 0.6 + index * 0.1 }}
                 className="col-span-5 flex items-center gap-2"
               >
-                <motion.img
-                  whileHover={{ scale: 1.2, rotate: 10 }}
-                  src={club?.logo}
-                  alt={club?.nome}
-                  className="w-6 h-6 object-contain"
-                />
-                <span className="font-semibold text-xs truncate text-slate-800">{club?.nome}</span>
+                {club && (
+                  <Link
+                    href={`/clubes/${club.id}`}
+                    className="flex items-center gap-2 hover:underline"
+                  >
+                    <motion.img
+                      whileHover={{ scale: 1.2, rotate: 10 }}
+                      src={club.logo}
+                      alt={club.nome}
+                      className="w-6 h-6 object-contain"
+                    />
+                    <span className="font-semibold text-xs truncate text-slate-800">
+                      {club.nome}
+                    </span>
+                  </Link>
+                )}
               </motion.div>
+
 
               {/* Estatísticas com animação de contagem */}
               <motion.div

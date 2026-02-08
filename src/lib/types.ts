@@ -6,6 +6,17 @@ export interface Club {
   stadium: string;
   city: string;
   colors: [string, string];
+  completeName:string;
+  reputation: string;
+  alcunha:string;
+  fundation:string;
+  estatuto:string;
+  capitao:string;
+  Subcapitao:string;
+  divisao:string;
+  continental:string;
+  rivais:number[];
+  derbis:string[];
 }
 export interface ClubStats {
   club: number | string; // id ou nome

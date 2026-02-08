@@ -50,37 +50,40 @@ export default function StatsCard({ totalJogosRealizados, totalGolos }: Props) {
         </Link>
 
         {/* Jogos Realizados */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.4, delay: 0.2 }}
-          whileHover={{ scale: 1.05, y: -5 }}
-          className="bg-linear-to-br from-emerald-500 to-emerald-600 rounded-xl p-4 shadow-lg hover:shadow-2xl transition-shadow cursor-pointer"
-        >
+        <Link href="/jogos" className="block group">
           <motion.div
-            initial={{ x: -10, opacity: 0 }}
-            animate={{ x: 0, opacity: 1 }}
-            transition={{ duration: 0.3, delay: 0.3 }}
-            className="flex items-center gap-2 mb-2"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, delay: 0.2 }}
+            whileHover={{ scale: 1.05, y: -5 }}
+            className="bg-linear-to-br from-emerald-500 to-emerald-600 rounded-xl p-4 shadow-lg hover:shadow-2xl transition-shadow cursor-pointer"
           >
-            <Trophy className="w-4 h-4 text-emerald-50" />
-            <span className="text-emerald-50 text-xs font-semibold uppercase tracking-wide">
-              Jogos
-            </span>
+            <motion.div
+              initial={{ x: -10, opacity: 0 }}
+              animate={{ x: 0, opacity: 1 }}
+              transition={{ duration: 0.3, delay: 0.3 }}
+              className="flex items-center gap-2 mb-2"
+            >
+              <Trophy className="w-4 h-4 text-emerald-50" />
+              <span className="text-emerald-50 text-xs font-semibold uppercase tracking-wide">
+                Jogos
+              </span>
+            </motion.div>
+            <motion.div
+              initial={{ scale: 0.5, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.4, type: "spring", stiffness: 200 }}
+              className="text-white text-3xl font-black"
+            >
+              {totalJogosRealizados}
+            </motion.div>
+            <div className="text-emerald-100 text-xs mt-1 font-medium">realizados</div>
           </motion.div>
-          <motion.div
-            initial={{ scale: 0.5, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.4, type: "spring", stiffness: 200 }}
-            className="text-white text-3xl font-black"
-          >
-            {totalJogosRealizados}
-          </motion.div>
-          <div className="text-emerald-100 text-xs mt-1 font-medium">realizados</div>
-        </motion.div>
+        </Link>
       </div>
 
       {/* Golos Totais */}
+      <Link href="/artilheiros" className="block group">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -124,6 +127,7 @@ export default function StatsCard({ totalJogosRealizados, totalGolos }: Props) {
           </motion.div>
         </div>
       </motion.div>
+      </Link>
     </>
   );
 }
