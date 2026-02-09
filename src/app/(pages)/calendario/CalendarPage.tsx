@@ -32,7 +32,7 @@ export default function CalendarPage() {
         {selectedGames.length > 0 ? (
           <motion.div className="space-y-5">
             {selectedGames.map((game, index) => (
-              <MatchCard key={game.id} game={game} index={index} onClick={(game) => router.push(`/jogos /${game.id}`)} />
+              <MatchCard key={game.id} game={game} index={index} onClick={(game) => router.push(`/jogos/${game.id}`)} />
             ))}
           </motion.div>
         ) : (
