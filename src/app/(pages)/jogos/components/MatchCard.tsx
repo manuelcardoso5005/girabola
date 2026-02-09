@@ -4,7 +4,7 @@ import MatchTeam from "./MatchTeam";
 import MatchDateTime from "./MatchDateTime";
 import MatchFooter from "./MatchFooter";
 import { motion } from "framer-motion";
-import { isLive } from "./utils";
+import { isLive } from "../hooks/utils";
 
 interface MatchCardProps {
   jogo?: any;

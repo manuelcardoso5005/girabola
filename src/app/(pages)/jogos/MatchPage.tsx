@@ -3,14 +3,16 @@ import { useState, useMemo } from "react";
 import LayoutPage from "@/src/components/Layout/LayoutPage";
 import { objecto } from "@/src/data/data";
 import { AnimatePresence, motion } from "framer-motion";
-import FilterButtons from "./FilterButtons";
-import MatchCard from "./MatchCard";
-import { isLive, getTimestamp } from "./utils";
-import MatchDetail from "./MatchDetail";
+import FilterButtons from "./components/FilterButtons";
+import MatchCard from "./components/MatchCard";
+import { isLive, getTimestamp } from "./hooks/utils";
+import MatchDetail from "./components/MatchDetail";
+import { useRouter } from "next/navigation";
 
 export default function MatchPage() {
+  const router = useRouter();
   const [filter, setFilter] = useState<"todos" | "aoVivo">("todos");
-  const [selectedMatch, setSelectedMatch] = useState<any | null>(null);
+  //const [selectedMatch, setSelectedMatch] = useState<any | null>(null);
 
   const clubeMap = Object.fromEntries(
     objecto.clubs.map((c) => [c.id, { nome: c.nome, shortName: c.shortName, logo: c.logo, stadium: c.stadium, city: c.city }])
@@ -54,7 +56,7 @@ export default function MatchPage() {
         {filteredMatches.length > 0 ? (
           <motion.div key="matches-list" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="space-y-5">
             {filteredMatches.map((match, index) => (
-              <MatchCard key={match.id} match={match} index={index} onSelect={() => setSelectedMatch(match)} />
+              <MatchCard key={match.id} match={match} index={index} onSelect={() => router.push(`/jogos/${match.id}`)} />
             ))}
           </motion.div>
         ) : (
@@ -76,7 +78,6 @@ export default function MatchPage() {
       </AnimatePresence>
 
       {/* MatchDetail */}
-      {selectedMatch && <MatchDetail jogo={selectedMatch} onClose={() => setSelectedMatch(null)} />}
     </LayoutPage>
   );
 }
