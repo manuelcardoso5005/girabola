@@ -37,7 +37,7 @@ export default function Footer() {
       title: "Institucional",
       links: [
         { href: "/sobre", label: "Sobre o Girabola" },
-        { href: "/historiaz", label: "História" },
+        { href: "/historia", label: "História" },
         { href: "/contacto", label: "Contacto" },
       ],
     },
