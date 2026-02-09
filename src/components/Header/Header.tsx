@@ -1,11 +1,13 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { objecto } from "@/src/data/data";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Header() {
+  const [open, setOpen] = useState(false);
   const pathname = usePathname();
 
   const { competicao, epoca } = objecto;
@@ -50,7 +52,26 @@ export default function Header() {
           </motion.div>
 
           {/* Navegação */}
-          <nav className="flex items-center gap-2 h-full relative">
+          <button
+            onClick={() => setOpen(!open)}
+            className="md:hidden text-white p-2"
+          >
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d={open ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"}
+              />
+            </svg>
+          </button>
+
+          <nav className="hidden md:flex items-center gap-2 h-full relative">
             {links.map((link) => {
               const isActive = pathname === link.href;
 
@@ -89,6 +110,39 @@ export default function Header() {
           </nav>
         </div>
       </div>
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="md:hidden bg-slate-900 border-t border-slate-700"
+          >
+            <div className="flex flex-col">
+              {links.map((link) => {
+                const isActive = pathname === link.href;
+
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    onClick={() => setOpen(false)}
+                    className={`px-6 py-4 text-sm font-medium ${
+                      isActive
+                        ? "text-white bg-slate-800"
+                        : "text-slate-400 hover:text-white hover:bg-slate-800/50"
+                    }`}
+                  >
+                    {link.label}
+                  </Link>
+                );
+              })}
+            </div>
+          </motion.div>
+        )}
+</AnimatePresence>
+
     </header>
   );
 }

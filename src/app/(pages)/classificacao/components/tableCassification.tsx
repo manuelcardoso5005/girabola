@@ -216,8 +216,8 @@ export default function TabelaClassificacao({
                   </td>
 
                   {/* CLUBE */}
-                  <td className="p-3">
-                    <div className="flex items-center gap-3">
+                  <td className="p-3 md:p-3 text-left">
+                    <div className="flex items-center gap-3 pr-4">
                       <motion.img
                         src={club?.logo}
                         className="w-8 h-8 object-contain"
@@ -237,7 +237,8 @@ export default function TabelaClassificacao({
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: index * 0.05 + 0.15 }}
                       >
-                        {club?.nome}
+                        <span className="block md:hidden">{club?.shortName}</span>
+                        <span className="hidden md:block">{club?.nome}</span>
                       </motion.span>
                     </div>
                   </td>
