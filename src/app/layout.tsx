@@ -7,7 +7,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="pt">
       <body className="overflow-x-hidden">
         <Header />
-        <main className="pt-16">{children}</main>
+        <main className="pt-16 lg:pt-28">{children}</main>
         <Footer />
       </body>
     </html>
