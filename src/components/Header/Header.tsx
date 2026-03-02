@@ -1,12 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { objecto } from "@/src/data/data";
 import { motion, AnimatePresence } from "framer-motion";
 import HeaderTop from "./components/HeaderTop";
 import HeaderMain from "./components/HeaderMain";
+import HeaderNews from "./components/HeaderNews";
+import HeaderSlider from "./components/HeaderSlider";
 
 export default function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -50,6 +50,9 @@ export default function Header() {
           { href: "/sobre", label: "Sobre" },
         ]}
       />
+      
+      {!scrolled && (<HeaderNews />)}
+      <HeaderSlider />
     </header>
   );
 }
